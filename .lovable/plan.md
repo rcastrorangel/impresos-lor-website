@@ -1,29 +1,27 @@
 
 
-# Google Analytics 4 con Consent Mode v2
+# Formulario de contacto → WhatsApp directo
+
+## Enfoque
+Al enviar el formulario, se abrirá WhatsApp con un mensaje pre-llenado con los datos del formulario (nombre, teléfono, servicio, mensaje). No requiere backend ni API keys.
 
 ## Cambios
 
-### 1. `index.html` — Script de GA4 con Consent Mode
-- Agregar el snippet de Google Consent Mode v2 **antes** del script de gtag.js
-- Por defecto, denegar `analytics_storage` y `ad_storage` hasta que el usuario acepte cookies
-- Cargar `gtag.js` con un placeholder `G-XXXXXXXXXX`
-- Configurar señales: `ads_data_redaction`, `url_passthrough`
+### `src/pages/Contacto.tsx`
+- Modificar `handleSubmit` para construir un mensaje de texto con los datos del formulario
+- Usar `encodeURIComponent` para sanitizar el texto
+- Abrir `https://wa.me/522213543712?text={mensaje}` en nueva pestaña
+- Mantener el toast de confirmación
+- Agregar validación básica con campos `required`
 
-### 2. `src/components/CookieConsent.tsx` — Banner de consentimiento
-- Banner sticky en la parte inferior con mensaje breve sobre cookies
-- Botones "Aceptar" y "Rechazar"
-- Al aceptar: actualizar consent con `gtag('consent', 'update', ...)` y guardar preferencia en `localStorage`
-- Al rechazar: mantener denegado y guardar preferencia
-- No mostrar el banner si ya hay preferencia guardada
+### Formato del mensaje WhatsApp
+```text
+*Nuevo mensaje desde el sitio web*
+📋 *Nombre:* Juan Pérez
+📞 *Teléfono:* 222 123 4567
+🏷️ *Servicio:* Formatos comerciales
+💬 *Mensaje:* Necesito cotizar 500 volantes
+```
 
-### 3. `src/hooks/usePageTracking.ts` — Tracking de navegación SPA
-- Hook que escucha cambios de ruta con `useLocation` de react-router
-- Envía `page_view` events a GA4 en cada navegación
-
-### 4. `src/App.tsx` — Integrar componentes
-- Agregar `CookieConsent` y `usePageTracking`
-
-### Placeholder
-El Measurement ID será `G-XXXXXXXXXX`. Cuando tengas tu código GA4 real, solo hay que reemplazarlo en `index.html`.
+No se requiere Supabase, edge functions ni API keys. Todo funciona del lado del cliente.
 
