@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 declare global {
@@ -48,7 +49,10 @@ const CookieConsent = () => {
     <div className="fixed bottom-0 inset-x-0 z-50 p-4 bg-card border-t border-border shadow-lg">
       <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center gap-4">
         <p className="text-sm text-muted-foreground flex-1">
-          Usamos cookies para analizar el tráfico del sitio y mejorar tu experiencia. Puedes aceptar o rechazar el uso de cookies analíticas.
+          Usamos cookies para analizar el tráfico del sitio y mejorar tu experiencia.{" "}
+          <Link to="/politica-de-cookies" className="text-primary underline">
+            Más información
+          </Link>.
         </p>
         <div className="flex gap-2 shrink-0">
           <Button variant="outline" size="sm" onClick={handleReject}>

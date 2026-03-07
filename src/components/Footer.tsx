@@ -22,6 +22,7 @@ const Footer = () => {
               <Link to="/servicios" className="text-sm text-primary-foreground/70 hover:text-accent transition-colors">Servicios</Link>
               <Link to="/contacto" className="text-sm text-primary-foreground/70 hover:text-accent transition-colors">Contacto</Link>
               <Link to="/aviso-de-privacidad" className="text-sm text-primary-foreground/70 hover:text-accent transition-colors">Aviso de Privacidad</Link>
+              <Link to="/politica-de-cookies" className="text-sm text-primary-foreground/70 hover:text-accent transition-colors">Política de Cookies</Link>
             </nav>
           </div>
 

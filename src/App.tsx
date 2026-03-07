@@ -11,6 +11,8 @@ import usePageTracking from "@/hooks/usePageTracking";
 import Index from "./pages/Index";
 import Servicios from "./pages/Servicios";
 import Contacto from "./pages/Contacto";
+import AvisoDePrivacidad from "./pages/AvisoDePrivacidad";
+import PoliticaDeCookies from "./pages/PoliticaDeCookies";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,8 +25,10 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/servicios" element={<Servicios />} />
-        <Route path="/contacto" element={<Contacto />} />
-        <Route path="*" element={<NotFound />} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/aviso-de-privacidad" element={<AvisoDePrivacidad />} />
+          <Route path="/politica-de-cookies" element={<PoliticaDeCookies />} />
+          <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
       <FloatingWhatsApp />
