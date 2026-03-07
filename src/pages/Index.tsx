@@ -57,7 +57,7 @@ const galleryImages = [
 
 const Index = () => {
   return (
-    <main>
+    <main className="pt-16">
       {/* Hero */}
       <section className="relative flex min-h-[80vh] items-center justify-center bg-primary overflow-hidden">
         <div className="absolute inset-0 bg-[url('/placeholder.svg')] bg-cover bg-center opacity-10" />
