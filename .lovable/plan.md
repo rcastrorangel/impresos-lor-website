@@ -1,34 +1,27 @@
 
 
-# SEO Audit — Gaps Found
+# Formulario de contacto → WhatsApp directo
 
-After reviewing the entire codebase, the local SEO implementation is already strong. Here are the remaining gaps:
+## Enfoque
+Al enviar el formulario, se abrirá WhatsApp con un mensaje pre-llenado con los datos del formulario (nombre, teléfono, servicio, mensaje). No requiere backend ni API keys.
 
-## Issues to Fix
+## Cambios
 
-### 1. NotFound page is in English
-The 404 page still shows "Oops! Page not found" and "Return to Home" in English. It also lacks `useDocumentHead` for a proper title/description, and uses a generic layout without the Navbar/Footer context.
+### `src/pages/Contacto.tsx`
+- Modificar `handleSubmit` para construir un mensaje de texto con los datos del formulario
+- Usar `encodeURIComponent` para sanitizar el texto
+- Abrir `https://wa.me/522213543712?text={mensaje}` en nueva pestaña
+- Mantener el toast de confirmación
+- Agregar validación básica con campos `required`
 
-### 2. No scroll-to-top on route change
-When navigating between pages via React Router, the scroll position is preserved. Search engines and users expect pages to start at the top. Add a `ScrollToTop` component in `App.tsx`.
+### Formato del mensaje WhatsApp
+```text
+*Nuevo mensaje desde el sitio web*
+📋 *Nombre:* Juan Pérez
+📞 *Teléfono:* 222 123 4567
+🏷️ *Servicio:* Formatos comerciales
+💬 *Mensaje:* Necesito cotizar 500 volantes
+```
 
-### 3. Missing Aviso de Privacidad page
-The footer links to `/aviso-de-privacidad` but the route doesn't exist — this creates a broken link (bad for SEO crawlers). Add a placeholder page with proper head tags and breadcrumb schema.
-
-### 4. Navbar `<nav>` lacks `aria-label`
-The desktop and mobile `<nav>` elements should have `aria-label="Navegación principal"` for accessibility/SEO.
-
-### 5. Footer nav lacks semantic `<nav>` with aria-label
-Footer links section should be wrapped in `<nav aria-label="Enlaces del pie de página">`.
-
-## Files to Modify
-
-| File | Change |
-|------|--------|
-| `src/pages/NotFound.tsx` | Translate to Spanish, add `useDocumentHead` |
-| `src/App.tsx` | Add `ScrollToTop` component, add `/aviso-de-privacidad` route |
-| `src/pages/AvisoDePrivacidad.tsx` | New placeholder privacy page with SEO tags |
-| `src/components/Navbar.tsx` | Add `aria-label` to `<nav>` elements |
-| `src/components/Footer.tsx` | Wrap links in semantic `<nav>` with `aria-label` |
-| `public/sitemap.xml` | Add `/aviso-de-privacidad` route |
+No se requiere Supabase, edge functions ni API keys. Todo funciona del lado del cliente.
 
