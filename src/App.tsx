@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import CookieConsent from "@/components/CookieConsent";
+import usePageTracking from "@/hooks/usePageTracking";
 import Index from "./pages/Index";
 import Servicios from "./pages/Servicios";
 import Contacto from "./pages/Contacto";
