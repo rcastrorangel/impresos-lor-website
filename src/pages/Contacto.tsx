@@ -25,7 +25,19 @@ const Contacto = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({ title: "Mensaje enviado", description: "Nos pondremos en contacto contigo pronto." });
+
+    const lines = [
+      "*Nuevo mensaje desde el sitio web*",
+      `📋 *Nombre:* ${formData.name.trim()}`,
+      `📞 *Teléfono:* ${formData.phone.trim()}`,
+      formData.service ? `🏷️ *Servicio:* ${SERVICE_LABELS[formData.service] ?? formData.service}` : "",
+      formData.message.trim() ? `💬 *Mensaje:* ${formData.message.trim()}` : "",
+    ].filter(Boolean).join("\n");
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+
+    toast({ title: "Redirigiendo a WhatsApp", description: "Se abrirá WhatsApp con tu mensaje." });
     setFormData({ name: "", phone: "", service: "", message: "" });
   };
 
