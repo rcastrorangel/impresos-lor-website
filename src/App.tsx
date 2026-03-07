@@ -25,8 +25,10 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/servicios" element={<Servicios />} />
-        <Route path="/contacto" element={<Contacto />} />
-        <Route path="*" element={<NotFound />} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/aviso-de-privacidad" element={<AvisoDePrivacidad />} />
+          <Route path="/politica-de-cookies" element={<PoliticaDeCookies />} />
+          <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
       <FloatingWhatsApp />
