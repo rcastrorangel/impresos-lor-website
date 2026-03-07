@@ -11,6 +11,8 @@ import usePageTracking from "@/hooks/usePageTracking";
 import Index from "./pages/Index";
 import Servicios from "./pages/Servicios";
 import Contacto from "./pages/Contacto";
+import AvisoDePrivacidad from "./pages/AvisoDePrivacidad";
+import PoliticaDeCookies from "./pages/PoliticaDeCookies";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
