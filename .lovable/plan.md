@@ -1,51 +1,34 @@
 
 
-# SEO Local para Puebla y Cholula
+# SEO Audit — Gaps Found
 
-## What's already in place
-- `lang="es-MX"`, title/description with "Puebla y Cholula", OG tags, canonical, robots.txt
-- H1 with local keywords, Google Maps embed, address text
+After reviewing the entire codebase, the local SEO implementation is already strong. Here are the remaining gaps:
 
-## What's missing for full local SEO
+## Issues to Fix
 
-### 1. JSON-LD Structured Data (most impactful)
-- **LocalBusiness** schema on the homepage with name, address (PostalAddress), geo coordinates, phone, email, URL, openingHours, areaServed (Puebla, Cholula), priceRange, sameAs (Facebook, Instagram)
-- **BreadcrumbList** schema on Servicios and Contacto pages
+### 1. NotFound page is in English
+The 404 page still shows "Oops! Page not found" and "Return to Home" in English. It also lacks `useDocumentHead` for a proper title/description, and uses a generic layout without the Navbar/Footer context.
 
-### 2. Per-page `<title>` and `<meta description>`
-Currently only one static title in `index.html`. Since this is a React SPA, add a small `useDocumentHead` hook or use `document.title` in each page to set unique titles:
-- Inicio: "Impresos Lor — Impresión Offset en Puebla y Cholula" (already set)
-- Servicios: "Servicios de Impresión Offset en Puebla | Impresos Lor"
-- Contacto: "Contacto — Impresos Lor | Impresión en Puebla y Cholula"
+### 2. No scroll-to-top on route change
+When navigating between pages via React Router, the scroll position is preserved. Search engines and users expect pages to start at the top. Add a `ScrollToTop` component in `App.tsx`.
 
-### 3. Semantic HTML improvements
-- Add `<address>` element wrapping contact info on Contacto page
-- Add `aria-label` attributes on landmark sections
-- Add `<h2>`/`<h3>` with geo-keywords where natural (e.g., "Servicios de Impresión en Puebla y Cholula")
+### 3. Missing Aviso de Privacidad page
+The footer links to `/aviso-de-privacidad` but the route doesn't exist — this creates a broken link (bad for SEO crawlers). Add a placeholder page with proper head tags and breadcrumb schema.
 
-### 4. Sitemap
-- Create `public/sitemap.xml` with all 3 routes + lastmod dates
+### 4. Navbar `<nav>` lacks `aria-label`
+The desktop and mobile `<nav>` elements should have `aria-label="Navegación principal"` for accessibility/SEO.
 
-### 5. Robots.txt update
-- Add `Sitemap: https://impresoslor.com/sitemap.xml`
+### 5. Footer nav lacks semantic `<nav>` with aria-label
+Footer links section should be wrapped in `<nav aria-label="Enlaces del pie de página">`.
 
-### 6. Geo meta tags
-- Add `<meta name="geo.region">`, `<meta name="geo.placename">`, `<meta name="geo.position">` to index.html
-
-### 7. Local keyword enrichment in content
-- Sprinkle "en Puebla", "en Cholula", "zona metropolitana de Puebla" naturally into page copy (subtitles, service descriptions, value props)
-
-## Files to create/modify
+## Files to Modify
 
 | File | Change |
 |------|--------|
-| `index.html` | Add geo meta tags |
-| `src/hooks/useDocumentHead.ts` | New hook to set title + meta description per page |
-| `src/components/LocalBusinessSchema.tsx` | New component: injects JSON-LD LocalBusiness script |
-| `src/components/BreadcrumbSchema.tsx` | New component: injects JSON-LD BreadcrumbList script |
-| `src/pages/Index.tsx` | Use useDocumentHead, add LocalBusinessSchema, enrich copy with local keywords |
-| `src/pages/Servicios.tsx` | Use useDocumentHead, add BreadcrumbSchema, enrich H1/subtitles |
-| `src/pages/Contacto.tsx` | Use useDocumentHead, add BreadcrumbSchema, wrap address in `<address>`, enrich copy |
-| `public/sitemap.xml` | New file with 3 routes |
-| `public/robots.txt` | Add Sitemap directive |
+| `src/pages/NotFound.tsx` | Translate to Spanish, add `useDocumentHead` |
+| `src/App.tsx` | Add `ScrollToTop` component, add `/aviso-de-privacidad` route |
+| `src/pages/AvisoDePrivacidad.tsx` | New placeholder privacy page with SEO tags |
+| `src/components/Navbar.tsx` | Add `aria-label` to `<nav>` elements |
+| `src/components/Footer.tsx` | Wrap links in semantic `<nav>` with `aria-label` |
+| `public/sitemap.xml` | Add `/aviso-de-privacidad` route |
 
