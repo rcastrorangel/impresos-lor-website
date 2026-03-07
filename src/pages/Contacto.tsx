@@ -7,7 +7,17 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 
-const WHATSAPP_URL = "https://wa.me/522213543712";
+const WHATSAPP_NUMBER = "522213543712";
+
+const SERVICE_LABELS: Record<string, string> = {
+  formatos: "Formatos comerciales",
+  recetarios: "Recetarios y Formatos Médicos",
+  etiquetas: "Etiquetas",
+  cajas: "Cajas",
+  otro: "Otro",
+};
+
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 const Contacto = () => {
   const { toast } = useToast();
