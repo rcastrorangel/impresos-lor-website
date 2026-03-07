@@ -7,7 +7,17 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 
-const WHATSAPP_URL = "https://wa.me/522213543712";
+const WHATSAPP_NUMBER = "522213543712";
+
+const SERVICE_LABELS: Record<string, string> = {
+  formatos: "Formatos comerciales",
+  recetarios: "Recetarios y Formatos Médicos",
+  etiquetas: "Etiquetas",
+  cajas: "Cajas",
+  otro: "Otro",
+};
+
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 const Contacto = () => {
   const { toast } = useToast();
@@ -15,7 +25,19 @@ const Contacto = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({ title: "Mensaje enviado", description: "Nos pondremos en contacto contigo pronto." });
+
+    const lines = [
+      "*Nuevo mensaje desde el sitio web*",
+      `📋 *Nombre:* ${formData.name.trim()}`,
+      `📞 *Teléfono:* ${formData.phone.trim()}`,
+      formData.service ? `🏷️ *Servicio:* ${SERVICE_LABELS[formData.service] ?? formData.service}` : "",
+      formData.message.trim() ? `💬 *Mensaje:* ${formData.message.trim()}` : "",
+    ].filter(Boolean).join("\n");
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+
+    toast({ title: "Redirigiendo a WhatsApp", description: "Se abrirá WhatsApp con tu mensaje." });
     setFormData({ name: "", phone: "", service: "", message: "" });
   };
 
