@@ -159,7 +159,7 @@ const Index = () => {
           <div className="aspect-video w-full max-w-4xl mx-auto overflow-hidden rounded-lg shadow-md">
             <iframe
               title="Ubicación de Impresos Lor"
-              src="https://maps.google.com/maps?q=19.0486,-98.3069+(Impresos+Lor)&hl=es&z=17&ie=UTF8&iwloc=B&output=embed"
+              src="https://maps.google.com/maps?q=19.0486,-98.3069&z=17&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
