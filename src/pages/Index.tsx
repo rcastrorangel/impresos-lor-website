@@ -98,7 +98,7 @@ const Index = () => {
               Desde 1 color, hasta selección de color.
             </p>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
               <Card key={service.title} className="border-none shadow-md hover:shadow-lg transition-shadow bg-card">
                 <CardContent className="p-6 flex flex-col items-start gap-4">
