@@ -87,7 +87,7 @@ const Contacto = () => {
                   <MapPin className="h-5 w-5 text-accent mt-0.5 shrink-0" />
                   <div>
                     <p className="font-semibold text-foreground">Dirección</p>
-                    <p className="text-muted-foreground">Maya Sur #16 Loc38, Bello Horizonte, 72760 Pue., México</p>
+                    <p className="text-muted-foreground">C. Maya Sur #16 Loc38, Bello Horizonte, 72760 San Pedro Cholula, Pue., México</p>
                   </div>
                 </div>
               </div>
@@ -104,7 +104,7 @@ const Contacto = () => {
             <div className="aspect-video lg:aspect-auto lg:min-h-[400px] overflow-hidden rounded-lg shadow-md">
               <iframe
                 title="Ubicación de Impresos Lor"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.5!2d-98.2!3d19.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sMaya+Sur+%2316+Loc40%2C+Bello+Horizonte%2C+72760+Pue.%2C+Mexico!5e0!3m2!1ses!2smx!4v1700000000000"
+                src="https://www.google.com/maps?q=Impresos+Lor,+C.+Maya+Sur+16,+Bello+Horizonte,+72760+San+Pedro+Cholula,+Pue.&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

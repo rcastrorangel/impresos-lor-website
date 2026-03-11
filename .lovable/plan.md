@@ -1,30 +1,27 @@
 
 
-## Plan: Fix Google Maps embed and update geo SEO
+# Formulario de contacto → WhatsApp directo
 
-### Problem
-The current Maps embed uses placeholder coordinates (`19.0`, `-98.2`) with no real place ID, so no pin is visible. The address also says "Pue." but should reference "San Pedro Cholula" for better local SEO.
+## Enfoque
+Al enviar el formulario, se abrirá WhatsApp con un mensaje pre-llenado con los datos del formulario (nombre, teléfono, servicio, mensaje). No requiere backend ni API keys.
 
-### Changes
+## Cambios
 
-**1. Fix Google Maps embed (Index.tsx + Contacto.tsx)**
-Replace the broken iframe `src` in both files with a working embed URL that shows "Impresos Lor" with a pin:
+### `src/pages/Contacto.tsx`
+- Modificar `handleSubmit` para construir un mensaje de texto con los datos del formulario
+- Usar `encodeURIComponent` para sanitizar el texto
+- Abrir `https://wa.me/522213543712?text={mensaje}` en nueva pestaña
+- Mantener el toast de confirmación
+- Agregar validación básica con campos `required`
+
+### Formato del mensaje WhatsApp
+```text
+*Nuevo mensaje desde el sitio web*
+📋 *Nombre:* Juan Pérez
+📞 *Teléfono:* 222 123 4567
+🏷️ *Servicio:* Formatos comerciales
+💬 *Mensaje:* Necesito cotizar 500 volantes
 ```
-https://www.google.com/maps?q=Impresos+Lor,+C.+Maya+Sur+16,+Bello+Horizonte,+72760+San+Pedro+Cholula,+Pue.&output=embed
-```
 
-**2. Add geo meta tags (index.html)**
-Add geographic meta tags after the existing meta tags:
-```html
-<meta name="geo.region" content="MX-PUE" />
-<meta name="geo.placename" content="San Pedro Cholula, Puebla" />
-<meta name="geo.position" content="19.0486;-98.3069" />
-<meta name="ICBM" content="19.0486, -98.3069" />
-```
-
-**3. Update address display text**
-Update the visible address in both pages to:
-`C. Maya Sur #16 Loc38, Bello Horizonte, 72760 San Pedro Cholula, Pue., México`
-
-This adds "San Pedro Cholula" which is the correct municipality shown in Google Maps for better local search relevance.
+No se requiere Supabase, edge functions ni API keys. Todo funciona del lado del cliente.
 
