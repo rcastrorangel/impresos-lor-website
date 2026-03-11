@@ -87,7 +87,7 @@ const Contacto = () => {
                   <MapPin className="h-5 w-5 text-accent mt-0.5 shrink-0" />
                   <div>
                     <p className="font-semibold text-foreground">Dirección</p>
-                    <p className="text-muted-foreground">Maya Sur #16 Loc38, Bello Horizonte, 72760 Pue., México</p>
+                    <p className="text-muted-foreground">C. Maya Sur #16 Loc38, Bello Horizonte, 72760 San Pedro Cholula, Pue., México</p>
                   </div>
                 </div>
               </div>
