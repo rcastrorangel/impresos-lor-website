@@ -104,14 +104,13 @@ const Contacto = () => {
             <div className="aspect-video lg:aspect-auto lg:min-h-[400px] overflow-hidden rounded-lg shadow-md">
               <iframe
                 title="Ubicación de Impresos Lor"
-                src="https://maps.google.com/maps?width=100%25&height=100%25&hl=es&q=Impresos+Lor,+C.+Maya+Sur+16,+Bello+Horizonte,+72760+San+Pedro+Cholula,+Pue.&t=&z=16&ie=UTF8&iwloc=B&output=embed"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=-98.3109%2C19.0466%2C-98.3029%2C19.0506&layer=mapnik&marker=19.0486%2C-98.3069"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
               />
             </div>
           </div>
