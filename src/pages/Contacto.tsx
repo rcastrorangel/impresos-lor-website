@@ -104,7 +104,7 @@ const Contacto = () => {
             <div className="aspect-video lg:aspect-auto lg:min-h-[400px] overflow-hidden rounded-lg shadow-md">
               <iframe
                 title="Ubicación de Impresos Lor"
-                src="https://maps.google.com/maps?q=Impresos+Lor+San+Pedro+Cholula+Puebla&z=17&output=embed"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=-98.3089%2C19.0476%2C-98.3049%2C19.0496&layer=mapnik&marker=19.0486%2C-98.3069"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
