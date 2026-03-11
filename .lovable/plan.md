@@ -1,27 +1,22 @@
 
 
-# Formulario de contacto → WhatsApp directo
+## Plan: Agregar 2 nuevas cajas de servicios
 
-## Enfoque
-Al enviar el formulario, se abrirá WhatsApp con un mensaje pre-llenado con los datos del formulario (nombre, teléfono, servicio, mensaje). No requiere backend ni API keys.
+### Cambios
 
-## Cambios
+**1. Agregar nuevos imports (línea 1)**
+Importar dos nuevos iconos de lucide-react:
+- `UtensilsCrossed` para restaurantes
+- `Leaf` o `ShieldCheck` para papel grado alimenticio
 
-### `src/pages/Contacto.tsx`
-- Modificar `handleSubmit` para construir un mensaje de texto con los datos del formulario
-- Usar `encodeURIComponent` para sanitizar el texto
-- Abrir `https://wa.me/522213543712?text={mensaje}` en nueva pestaña
-- Mantener el toast de confirmación
-- Agregar validación básica con campos `required`
+**2. Actualizar array services (líneas 7-28)**
+Agregar 2 nuevos objetos al array:
+- "Impresos para Restaurantes": Remisiones, manteletas, comandas
+- "Papel Grado Alimenticio": Protección para alimentos, hamburguesas, alitas, galletas
 
-### Formato del mensaje WhatsApp
-```text
-*Nuevo mensaje desde el sitio web*
-📋 *Nombre:* Juan Pérez
-📞 *Teléfono:* 222 123 4567
-🏷️ *Servicio:* Formatos comerciales
-💬 *Mensaje:* Necesito cotizar 500 volantes
-```
+**3. Ajustar grid layout (línea 91)**
+Cambiar `lg:grid-cols-4` a `lg:grid-cols-3` para mostrar 6 items en 2 filas de 3 columnas cada una.
 
-No se requiere Supabase, edge functions ni API keys. Todo funciona del lado del cliente.
+### Resultado
+Sección mostrará 6 cajas en total: 2 filas de 3 servicios cada una, manteniendo el formato visual consistente.
 
