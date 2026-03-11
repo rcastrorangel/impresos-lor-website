@@ -1,4 +1,4 @@
-import { MessageCircle, FileText, Stethoscope, Tag, Package, Timer, Settings, Truck, Briefcase, MapPin } from "lucide-react";
+import { MessageCircle, FileText, Stethoscope, Tag, Package, Timer, Settings, Truck, Briefcase, MapPin, UtensilsCrossed, Leaf } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -24,6 +24,16 @@ const services = [
     icon: Package,
     title: "Cajas",
     text: "Empaques para perfumes, lentes, chocolates, hamburguesas, alitas y marquesitas. Acabados con barniz brillante o hotstamping.",
+  },
+  {
+    icon: UtensilsCrossed,
+    title: "Impresos para Restaurantes",
+    text: "Remisiones para respaldo de entregas, manteletas y comandas. En variedad de tamaños y papeles, a un color o en full color.",
+  },
+  {
+    icon: Leaf,
+    title: "Papel Grado Alimenticio",
+    text: "Protege la frescura e higiene de tus alimentos. Envuelve hamburguesas, alitas, galletas y más con papel certificado.",
   },
 ];
 
@@ -88,7 +98,7 @@ const Index = () => {
               Desde 1 color, hasta selección de color.
             </p>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
               <Card key={service.title} className="border-none shadow-md hover:shadow-lg transition-shadow bg-card">
                 <CardContent className="p-6 flex flex-col items-start gap-4">
