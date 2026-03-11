@@ -1,4 +1,4 @@
-import { MessageCircle, FileText, Stethoscope, Tag, Package, Timer, Settings, Truck, Briefcase, MapPin } from "lucide-react";
+import { MessageCircle, FileText, Stethoscope, Tag, Package, Timer, Settings, Truck, Briefcase, MapPin, UtensilsCrossed, Leaf } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
