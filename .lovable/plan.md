@@ -1,27 +1,22 @@
 
 
-# Formulario de contacto → WhatsApp directo
+## Fix: Google Maps iframe popup blocked error
 
-## Enfoque
-Al enviar el formulario, se abrirá WhatsApp con un mensaje pre-llenado con los datos del formulario (nombre, teléfono, servicio, mensaje). No requiere backend ni API keys.
+### Problem
+The `?q=...&output=embed` URL format causes cross-origin opener policy errors when clicking the pin to open in a new tab. This is a known issue with this embed format in sandboxed iframes.
 
-## Cambios
+### Solution
+Switch to the official Google Maps Embed API format using `/maps/embed/v1/place` or, more simply, use the `maps.google.com/maps?q=...&output=embed` format with the proper embed URL structure.
 
-### `src/pages/Contacto.tsx`
-- Modificar `handleSubmit` para construir un mensaje de texto con los datos del formulario
-- Usar `encodeURIComponent` para sanitizar el texto
-- Abrir `https://wa.me/522213543712?text={mensaje}` en nueva pestaña
-- Mantener el toast de confirmación
-- Agregar validación básica con campos `required`
+The most reliable fix without requiring an API key is to use the `google.com/maps/embed` format:
 
-### Formato del mensaje WhatsApp
-```text
-*Nuevo mensaje desde el sitio web*
-📋 *Nombre:* Juan Pérez
-📞 *Teléfono:* 222 123 4567
-🏷️ *Servicio:* Formatos comerciales
-💬 *Mensaje:* Necesito cotizar 500 volantes
+```
+https://maps.google.com/maps?width=100%&height=100%&hl=es&q=Impresos+Lor,+C.+Maya+Sur+16,+Bello+Horizonte,+72760+San+Pedro+Cholula,+Pue.&t=&z=16&ie=UTF8&iwloc=B&output=embed
 ```
 
-No se requiere Supabase, edge functions ni API keys. Todo funciona del lado del cliente.
+### Files to change
+- **src/pages/Index.tsx** — Update iframe `src`
+- **src/pages/Contacto.tsx** — Update iframe `src`
+
+Both iframes will also get `sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"` attribute to explicitly allow popups to escape the sandbox, which resolves the COOP error.
 
