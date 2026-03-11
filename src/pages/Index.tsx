@@ -25,6 +25,16 @@ const services = [
     title: "Cajas",
     text: "Empaques para perfumes, lentes, chocolates, hamburguesas, alitas y marquesitas. Acabados con barniz brillante o hotstamping.",
   },
+  {
+    icon: UtensilsCrossed,
+    title: "Impresos para Restaurantes",
+    text: "Remisiones para respaldo de entregas, manteletas y comandas. En variedad de tamaños y papeles, a un color o en full color.",
+  },
+  {
+    icon: Leaf,
+    title: "Papel Grado Alimenticio",
+    text: "Protege la frescura e higiene de tus alimentos. Envuelve hamburguesas, alitas, galletas y más con papel certificado.",
+  },
 ];
 
 const valueProps = [
