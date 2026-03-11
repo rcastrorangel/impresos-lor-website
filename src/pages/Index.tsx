@@ -159,13 +159,14 @@ const Index = () => {
           <div className="aspect-video w-full max-w-4xl mx-auto overflow-hidden rounded-lg shadow-md">
             <iframe
               title="Ubicación de Impresos Lor"
-              src="https://www.google.com/maps?q=Impresos+Lor,+C.+Maya+Sur+16,+Bello+Horizonte,+72760+San+Pedro+Cholula,+Pue.&output=embed"
+              src="https://maps.google.com/maps?width=100%25&height=100%25&hl=es&q=Impresos+Lor,+C.+Maya+Sur+16,+Bello+Horizonte,+72760+San+Pedro+Cholula,+Pue.&t=&z=16&ie=UTF8&iwloc=B&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
             />
           </div>
         </div>
