@@ -2,6 +2,16 @@ import { MessageCircle, FileText, Stethoscope, Tag, Package, Timer, Settings, Tr
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
+import galleryRemisiones1 from "@/assets/gallery/Remisiones_1.jpeg";
+import galleryRemisiones2 from "@/assets/gallery/Remisiones_2.jpeg";
+import gallerySobres1 from "@/assets/gallery/Sobres_1.jpeg";
+import gallerySobres2 from "@/assets/gallery/Sobres_2.jpeg";
+import galleryCajas1 from "@/assets/gallery/Cajas_1.jpeg";
+import galleryCajas2 from "@/assets/gallery/Cajas_2.jpeg";
+import galleryFolders1 from "@/assets/gallery/Folders_1.jpeg";
+import galleryFolders2 from "@/assets/gallery/Folders_2.jpeg";
+import galleryPapelAlimenticio from "@/assets/gallery/Papel_Grado_Alimenticio.jpeg";
+
 const WHATSAPP_URL = "https://wa.me/522213543712";
 
 const services = [
