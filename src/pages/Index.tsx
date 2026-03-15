@@ -154,12 +154,12 @@ const Index = () => {
           </h2>
           <div className="grid gap-4 grid-cols-2 md:grid-cols-3">
             {galleryImages.map((img, i) => (
-              <div key={i} className="aspect-[4/3] overflow-hidden rounded-lg bg-muted">
+              <div key={i} className="aspect-square overflow-hidden rounded-lg bg-muted flex items-center justify-center">
                 <img
                   src={img.src}
                   alt={img.alt}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform hover:scale-105"
+                  className="max-h-full max-w-full object-contain transition-transform hover:scale-105"
                 />
               </div>
             ))}
