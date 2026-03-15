@@ -1,27 +1,29 @@
 
 
-# Formulario de contacto → WhatsApp directo
+## Plan: Mostrar imágenes completas en la galería
 
-## Enfoque
-Al enviar el formulario, se abrirá WhatsApp con un mensaje pre-llenado con los datos del formulario (nombre, teléfono, servicio, mensaje). No requiere backend ni API keys.
+### Problema
+Las imágenes verticales se recortan porque el contenedor usa `aspect-[4/3]` con `object-cover`, lo que corta las partes superior e inferior.
 
-## Cambios
+### Solución
+Cambiar el contenedor y la imagen para que se muestre la foto completa con fondo neutro, manteniendo celdas cuadradas consistentes:
 
-### `src/pages/Contacto.tsx`
-- Modificar `handleSubmit` para construir un mensaje de texto con los datos del formulario
-- Usar `encodeURIComponent` para sanitizar el texto
-- Abrir `https://wa.me/522213543712?text={mensaje}` en nueva pestaña
-- Mantener el toast de confirmación
-- Agregar validación básica con campos `required`
+**Archivo: `src/pages/Index.tsx` (línea 157)**
 
-### Formato del mensaje WhatsApp
-```text
-*Nuevo mensaje desde el sitio web*
-📋 *Nombre:* Juan Pérez
-📞 *Teléfono:* 222 123 4567
-🏷️ *Servicio:* Formatos comerciales
-💬 *Mensaje:* Necesito cotizar 500 volantes
+Cambiar:
+```html
+<div className="aspect-[4/3] overflow-hidden rounded-lg bg-muted">
+  <img ... className="h-full w-full object-cover ..." />
 ```
 
-No se requiere Supabase, edge functions ni API keys. Todo funciona del lado del cliente.
+Por:
+```html
+<div className="aspect-square overflow-hidden rounded-lg bg-muted flex items-center justify-center">
+  <img ... className="max-h-full max-w-full object-contain ..." />
+```
+
+- `aspect-square`: celdas 1:1 uniformes
+- `object-contain` + `max-h-full max-w-full`: la imagen se muestra completa sin recorte
+- `bg-muted`: relleno sutil en los espacios vacíos que quedan alrededor
+- `flex items-center justify-center`: centra la imagen dentro de la celda
 
