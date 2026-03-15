@@ -67,12 +67,15 @@ const valueProps = [
 ];
 
 const galleryImages = [
-  { src: "/placeholder.svg", alt: "Impresión de formatos comerciales" },
-  { src: "/placeholder.svg", alt: "Impresión de etiquetas adhesivas" },
-  { src: "/placeholder.svg", alt: "Cajas impresas con acabado especial" },
-  { src: "/placeholder.svg", alt: "Recetarios médicos impresos" },
-  { src: "/placeholder.svg", alt: "Impresión offset de alta calidad" },
-  { src: "/placeholder.svg", alt: "Impresión de lona para restaurante" },
+  { src: galleryRemisiones1, alt: "Remisiones impresas personalizadas" },
+  { src: galleryRemisiones2, alt: "Notas de pedido impresas" },
+  { src: gallerySobres1, alt: "Sobres impresos para consultorio dental" },
+  { src: gallerySobres2, alt: "Sobres corporativos impresos" },
+  { src: galleryCajas1, alt: "Cajas impresas para cosméticos" },
+  { src: galleryCajas2, alt: "Cajas impresas para perfumería" },
+  { src: galleryFolders1, alt: "Folders impresos para consultorio" },
+  { src: galleryFolders2, alt: "Folders corporativos impresos" },
+  { src: galleryPapelAlimenticio, alt: "Papel grado alimenticio impreso" },
 ];
 
 const Index = () => {
