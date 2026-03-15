@@ -2,6 +2,16 @@ import { MessageCircle, FileText, Stethoscope, Tag, Package, Timer, Settings, Tr
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
+import galleryRemisiones1 from "@/assets/gallery/Remisiones_1.jpeg";
+import galleryRemisiones2 from "@/assets/gallery/Remisiones_2.jpeg";
+import gallerySobres1 from "@/assets/gallery/Sobres_1.jpeg";
+import gallerySobres2 from "@/assets/gallery/Sobres_2.jpeg";
+import galleryCajas1 from "@/assets/gallery/Cajas_1.jpeg";
+import galleryCajas2 from "@/assets/gallery/Cajas_2.jpeg";
+import galleryFolders1 from "@/assets/gallery/Folders_1.jpeg";
+import galleryFolders2 from "@/assets/gallery/Folders_2.jpeg";
+import galleryPapelAlimenticio from "@/assets/gallery/Papel_Grado_Alimenticio.jpeg";
+
 const WHATSAPP_URL = "https://wa.me/522213543712";
 
 const services = [
@@ -57,12 +67,15 @@ const valueProps = [
 ];
 
 const galleryImages = [
-  { src: "/placeholder.svg", alt: "Impresión de formatos comerciales" },
-  { src: "/placeholder.svg", alt: "Impresión de etiquetas adhesivas" },
-  { src: "/placeholder.svg", alt: "Cajas impresas con acabado especial" },
-  { src: "/placeholder.svg", alt: "Recetarios médicos impresos" },
-  { src: "/placeholder.svg", alt: "Impresión offset de alta calidad" },
-  { src: "/placeholder.svg", alt: "Impresión de lona para restaurante" },
+  { src: galleryRemisiones1, alt: "Remisiones impresas personalizadas" },
+  { src: galleryRemisiones2, alt: "Notas de pedido impresas" },
+  { src: gallerySobres1, alt: "Sobres impresos para consultorio dental" },
+  { src: gallerySobres2, alt: "Sobres corporativos impresos" },
+  { src: galleryCajas1, alt: "Cajas impresas para cosméticos" },
+  { src: galleryCajas2, alt: "Cajas impresas para perfumería" },
+  { src: galleryFolders1, alt: "Folders impresos para consultorio" },
+  { src: galleryFolders2, alt: "Folders corporativos impresos" },
+  { src: galleryPapelAlimenticio, alt: "Papel grado alimenticio impreso" },
 ];
 
 const Index = () => {

@@ -1,33 +1,27 @@
 
 
-## Plan: Reemplazar imágenes placeholder en la galería "Nuestro Trabajo"
+# Formulario de contacto → WhatsApp directo
 
-### Cambios
+## Enfoque
+Al enviar el formulario, se abrirá WhatsApp con un mensaje pre-llenado con los datos del formulario (nombre, teléfono, servicio, mensaje). No requiere backend ni API keys.
 
-**1. Copiar las 10 imágenes a `src/assets/gallery/`**
+## Cambios
 
-Mapeo de imágenes a sus descripciones alt:
+### `src/pages/Contacto.tsx`
+- Modificar `handleSubmit` para construir un mensaje de texto con los datos del formulario
+- Usar `encodeURIComponent` para sanitizar el texto
+- Abrir `https://wa.me/522213543712?text={mensaje}` en nueva pestaña
+- Mantener el toast de confirmación
+- Agregar validación básica con campos `required`
 
-| Archivo | Alt text |
-|---------|----------|
-| Remisiones_1.jpeg | Remisiones impresas personalizadas |
-| Remisiones_2.jpeg | Notas de pedido impresas |
-| Sobres_1.jpeg | Sobres impresos para consultorio dental |
-| Sobres_2.jpeg | Sobres corporativos impresos |
-| Cajas_1.jpeg | Cajas impresas para cosméticos |
-| Cajas_2.jpeg | Cajas impresas para perfumería |
-| Folders_1.jpeg | Folders impresos para consultorio |
-| Folders_2.jpeg | Folders corporativos impresos |
-| Papel_Grado_Alimenticio.jpeg | Papel grado alimenticio impreso |
+### Formato del mensaje WhatsApp
+```text
+*Nuevo mensaje desde el sitio web*
+📋 *Nombre:* Juan Pérez
+📞 *Teléfono:* 222 123 4567
+🏷️ *Servicio:* Formatos comerciales
+💬 *Mensaje:* Necesito cotizar 500 volantes
+```
 
-**2. Actualizar `src/pages/Index.tsx`**
-- Import each image from `@/assets/gallery/`
-- Update `galleryImages` array: replace 6 placeholder entries with 9 real images (one per uploaded file, excluding one duplicate if needed, or use all 10)
-- Adjust grid: keep `grid-cols-2 md:grid-cols-3` which works well for 9 images (3 rows of 3)
-
-**3. Update gallery grid for 10 images**
-Use all 10 images. The `grid-cols-2 md:grid-cols-3` grid handles 10 items gracefully (last row has 1 or 2 items depending on breakpoint).
-
-### Result
-The "Nuestro Trabajo" section will showcase real product photos instead of placeholder SVGs.
+No se requiere Supabase, edge functions ni API keys. Todo funciona del lado del cliente.
 
