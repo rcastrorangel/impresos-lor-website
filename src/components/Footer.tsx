@@ -30,10 +30,10 @@ const Footer = () => {
           <div>
             <h4 className="font-heading text-sm font-semibold mb-3 uppercase tracking-wider">Síguenos</h4>
             <div className="flex gap-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-primary-foreground/70 hover:text-accent transition-colors">
+              <a href="https://www.facebook.com/impresoslor" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-primary-foreground/70 hover:text-accent transition-colors">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-primary-foreground/70 hover:text-accent transition-colors">
+              <a href="https://www.instagram.com/impresoslor/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-primary-foreground/70 hover:text-accent transition-colors">
                 <Instagram className="h-5 w-5" />
               </a>
             </div>
