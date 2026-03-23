@@ -1,4 +1,5 @@
 import { MessageCircle, FileText, Stethoscope, Tag, Package } from "lucide-react";
+import useDocumentHead from "@/hooks/useDocumentHead";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 

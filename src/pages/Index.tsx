@@ -80,6 +80,12 @@ const galleryImages = [
 ];
 
 const Index = () => {
+  useDocumentHead({
+    title: "Impresos Lor — Impresión y Offset en Puebla y Cholula",
+    description: "Impresión offset de alta calidad para negocios en Puebla y Cholula. Formatos comerciales, etiquetas, cajas y más. Cotiza por WhatsApp.",
+    canonical: "/",
+  });
+
   return (
     <main className="pt-16">
       {/* Hero */}

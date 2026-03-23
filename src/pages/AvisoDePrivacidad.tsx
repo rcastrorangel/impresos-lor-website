@@ -1,4 +1,11 @@
+import useDocumentHead from "@/hooks/useDocumentHead";
+
 const AvisoDePrivacidad = () => {
+  useDocumentHead({
+    title: "Aviso de Privacidad",
+    description: "Consulta el aviso de privacidad de Impresos Lor. Conoce cómo protegemos tus datos personales.",
+    canonical: "/aviso-de-privacidad",
+  });
   return (
     <main className="min-h-screen bg-background pt-24 pb-20">
       <div className="container mx-auto px-4 max-w-3xl">
