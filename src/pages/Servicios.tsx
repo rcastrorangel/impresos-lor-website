@@ -37,6 +37,12 @@ const services = [
 ];
 
 const Servicios = () => {
+  useDocumentHead({
+    title: "Servicios de Impresión Offset",
+    description: "Conoce nuestros servicios: formatos comerciales, recetarios médicos, etiquetas y cajas. Impresión offset en Puebla y Cholula.",
+    canonical: "/servicios",
+  });
+
   return (
     <main className="pt-16">
       {/* Header */}
