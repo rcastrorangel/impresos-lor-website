@@ -1,4 +1,5 @@
 import { MessageCircle, FileText, Stethoscope, Tag, Package } from "lucide-react";
+import useDocumentHead from "@/hooks/useDocumentHead";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
@@ -36,6 +37,12 @@ const services = [
 ];
 
 const Servicios = () => {
+  useDocumentHead({
+    title: "Servicios de Impresión Offset",
+    description: "Conoce nuestros servicios: formatos comerciales, recetarios médicos, etiquetas y cajas. Impresión offset en Puebla y Cholula.",
+    canonical: "/servicios",
+  });
+
   return (
     <main className="pt-16">
       {/* Header */}

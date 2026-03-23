@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useDocumentHead from "@/hooks/useDocumentHead";
 import { MessageCircle, Phone, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,6 +22,11 @@ const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 const Contacto = () => {
   const { toast } = useToast();
+  useDocumentHead({
+    title: "Contacto",
+    description: "Contáctanos para cotizar tu proyecto de impresión. WhatsApp, teléfono, correo y ubicación en San Pedro Cholula, Puebla.",
+    canonical: "/contacto",
+  });
   const [formData, setFormData] = useState({ name: "", phone: "", service: "", message: "" });
 
   const handleSubmit = (e: React.FormEvent) => {

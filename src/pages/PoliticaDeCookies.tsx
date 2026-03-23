@@ -1,4 +1,11 @@
+import useDocumentHead from "@/hooks/useDocumentHead";
+
 const PoliticaDeCookies = () => {
+  useDocumentHead({
+    title: "Política de Cookies",
+    description: "Política de cookies de Impresos Lor. Conoce qué cookies usamos y cómo gestionarlas.",
+    canonical: "/politica-de-cookies",
+  });
   return (
     <main className="min-h-screen bg-background pt-24 pb-20">
       <div className="container mx-auto px-4 max-w-3xl">

@@ -1,4 +1,5 @@
 import { MessageCircle, FileText, Stethoscope, Tag, Package, Timer, Settings, Truck, Briefcase, MapPin, UtensilsCrossed, Leaf } from "lucide-react";
+import useDocumentHead from "@/hooks/useDocumentHead";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -79,6 +80,12 @@ const galleryImages = [
 ];
 
 const Index = () => {
+  useDocumentHead({
+    title: "Impresos Lor — Impresión y Offset en Puebla y Cholula",
+    description: "Impresión offset de alta calidad para negocios en Puebla y Cholula. Formatos comerciales, etiquetas, cajas y más. Cotiza por WhatsApp.",
+    canonical: "/",
+  });
+
   return (
     <main className="pt-16">
       {/* Hero */}
