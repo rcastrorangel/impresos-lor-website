@@ -1,4 +1,5 @@
 import { MessageCircle, FileText, Stethoscope, Tag, Package, Timer, Settings, Truck, Briefcase, MapPin, UtensilsCrossed, Leaf } from "lucide-react";
+import useDocumentHead from "@/hooks/useDocumentHead";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
