@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://impresoslor.com/</loc>
+    <loc>https://impresoslor.com.mx/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://impresoslor.com/servicios</loc>
+    <loc>https://impresoslor.com.mx/servicios</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://impresoslor.com/contacto</loc>
+    <loc>https://impresoslor.com.mx/contacto</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://impresoslor.com/aviso-de-privacidad</loc>
+    <loc>https://impresoslor.com.mx/aviso-de-privacidad</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://impresoslor.com/politica-de-cookies</loc>
+    <loc>https://impresoslor.com.mx/politica-de-cookies</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

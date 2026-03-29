@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://impresoslor.com/sitemap.xml
+Sitemap: https://impresoslor.com.mx/sitemap.xml
