@@ -182,7 +182,7 @@ const Index = () => {
           <div className="flex flex-col items-center gap-4 mb-8">
             <div className="flex items-center gap-2 text-muted-foreground">
               <MapPin className="h-5 w-5 text-accent" />
-              <span>C. Maya Sur #16 Loc38, Bello Horizonte, 72760 San Pedro Cholula, Pue., México</span>
+              <span>C. Maya Sur #16 Loc38, Bello Horizonte, 72760 San Pedro Cholula, Puebla, México</span>
             </div>
           </div>
           <div className="aspect-video w-full max-w-4xl mx-auto overflow-hidden rounded-lg shadow-md">
