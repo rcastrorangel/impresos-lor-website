@@ -1,27 +1,35 @@
 
 
-# Formulario de contacto → WhatsApp directo
+## Problem
 
-## Enfoque
-Al enviar el formulario, se abrirá WhatsApp con un mensaje pre-llenado con los datos del formulario (nombre, teléfono, servicio, mensaje). No requiere backend ni API keys.
+Google AI finds "Impresos Lor" for Cholula but not Puebla. The structured data lists `addressLocality` as "San Pedro Cholula" — which is technically correct but doesn't associate the business with "Puebla" as a city-level entity for AI search.
 
-## Cambios
+## Plan: Strengthen Puebla Association in Structured Data
 
-### `src/pages/Contacto.tsx`
-- Modificar `handleSubmit` para construir un mensaje de texto con los datos del formulario
-- Usar `encodeURIComponent` para sanitizar el texto
-- Abrir `https://wa.me/522213543712?text={mensaje}` en nueva pestaña
-- Mantener el toast de confirmación
-- Agregar validación básica con campos `required`
+### 1. Expand JSON-LD in `index.html`
 
-### Formato del mensaje WhatsApp
-```text
-*Nuevo mensaje desde el sitio web*
-📋 *Nombre:* Juan Pérez
-📞 *Teléfono:* 222 123 4567
-🏷️ *Servicio:* Formatos comerciales
-💬 *Mensaje:* Necesito cotizar 500 volantes
-```
+- Add `"areaServed"` to explicitly declare Puebla and Cholula as service areas:
+  ```json
+  "areaServed": [
+    { "@type": "City", "name": "Puebla", "sameAs": "https://es.wikipedia.org/wiki/Puebla_de_Zaragoza" },
+    { "@type": "City", "name": "San Pedro Cholula", "sameAs": "https://es.wikipedia.org/wiki/San_Pedro_Cholula" },
+    { "@type": "City", "name": "San Andrés Cholula" }
+  ]
+  ```
+- Change `@type` from `"LocalBusiness"` to `"PrintService"` (a more specific Schema.org type for printing businesses) — this gives AI systems better context.
+- Add `"alternateName": "Impresos Lor Puebla"` so AI associates the brand with the city.
+- Add `"knowsLanguage": "es"`.
+- Add a `"hasOfferCatalog"` with main service categories to enrich the listing.
 
-No se requiere Supabase, edge functions ni API keys. Todo funciona del lado del cliente.
+### 2. Add a secondary `LocalBusiness` breadcrumb via `areaServed`
+
+This is the key change — explicitly telling search engines and AI that Puebla is a served area, not just inferring it from the region field.
+
+### 3. Update meta descriptions
+
+Add "Puebla" more prominently in the `<meta name="description">` and OG tags — currently it says "Puebla y Cholula" which is good, but we can reinforce it.
+
+### Files to modify
+
+- **`index.html`** — Enhance JSON-LD structured data with `areaServed`, `alternateName`, more specific `@type`, and `hasOfferCatalog`.
 
