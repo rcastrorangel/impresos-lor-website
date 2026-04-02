@@ -6,7 +6,7 @@ interface DocumentHeadOptions {
   canonical?: string;
 }
 
-const BASE_URL = "https://impresoslor.com";
+const BASE_URL = "https://impresoslor.com.mx";
 const SITE_NAME = "Impresos Lor";
 
 const useDocumentHead = ({ title, description, canonical }: DocumentHeadOptions) => {
