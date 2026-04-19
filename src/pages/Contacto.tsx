@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useDocumentHead from "@/hooks/useDocumentHead";
-import { MessageCircle, Phone, Mail, MapPin } from "lucide-react";
+import { MessageCircle, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
