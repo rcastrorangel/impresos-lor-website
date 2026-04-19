@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 
 const WHATSAPP_URL = "https://wa.me/522213543712";
+// CTA: single-line button
 
 const navLinks = [
   { label: "Inicio", to: "/" },
