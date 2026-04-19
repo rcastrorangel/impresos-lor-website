@@ -41,9 +41,12 @@ const Navbar = () => {
 
         {/* Desktop CTA */}
         <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hidden md:block">
-          <Button className="bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp/90 font-semibold gap-2">
+          <Button className="bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp/90 font-semibold gap-2 h-auto py-2">
             <MessageCircle className="h-4 w-4" />
-            Cotizar por WhatsApp
+            <span className="flex flex-col leading-tight items-start">
+              <span>Cotizar por WhatsApp</span>
+              <span className="text-[10px] font-normal opacity-90">(Solo Mensajes)</span>
+            </span>
           </Button>
         </a>
 
@@ -70,9 +73,12 @@ const Navbar = () => {
                 </Link>
               ))}
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                <Button className="bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp/90 w-full font-semibold gap-2">
+                <Button className="bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp/90 w-full font-semibold gap-2 h-auto py-2">
                   <MessageCircle className="h-4 w-4" />
-                  Cotizar por WhatsApp
+                  <span className="flex flex-col leading-tight items-start">
+                    <span>Cotizar por WhatsApp</span>
+                    <span className="text-[10px] font-normal opacity-90">(Solo Mensajes)</span>
+                  </span>
                 </Button>
               </a>
             </nav>
