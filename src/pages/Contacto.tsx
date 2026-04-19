@@ -69,20 +69,6 @@ const Contacto = () => {
             <div className="flex flex-col gap-8">
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <Phone className="h-5 w-5 text-accent mt-0.5 shrink-0" />
-                  <div>
-                    <p className="font-semibold text-foreground">Teléfono</p>
-                    <a href="tel:+522223543712" className="text-muted-foreground hover:text-accent transition-colors">222 354 3712</a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <MessageCircle className="h-5 w-5 text-accent mt-0.5 shrink-0" />
-                  <div>
-                    <p className="font-semibold text-foreground">WhatsApp</p>
-                    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent transition-colors">+52 221 354 3712</a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
                   <Mail className="h-5 w-5 text-accent mt-0.5 shrink-0" />
                   <div>
                     <p className="font-semibold text-foreground">Correo</p>
