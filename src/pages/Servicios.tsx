@@ -3,7 +3,7 @@ import useDocumentHead from "@/hooks/useDocumentHead";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
-const WHATSAPP_URL = "https://wa.me/522213543712";
+const WHATSAPP_URL = "https://wa.me/522218594321";
 
 const services = [
   {
