@@ -4,7 +4,7 @@ import { Menu, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 
-const WHATSAPP_URL = "https://wa.me/522213543712";
+const WHATSAPP_URL = "https://wa.me/522218594321";
 // CTA: single-line button
 
 const navLinks = [

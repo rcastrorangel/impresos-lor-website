@@ -13,7 +13,7 @@ import galleryFolders1 from "@/assets/gallery/Folders_1.jpeg";
 import galleryFolders2 from "@/assets/gallery/Folders_2.jpeg";
 import galleryPapelAlimenticio from "@/assets/gallery/Papel_Grado_Alimenticio.jpeg";
 
-const WHATSAPP_URL = "https://wa.me/522213543712";
+const WHATSAPP_URL = "https://wa.me/522218594321";
 
 const services = [
   {
