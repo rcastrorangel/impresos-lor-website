@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useDocumentHead from "@/hooks/useDocumentHead";
-import { MessageCircle, Mail, MapPin } from "lucide-react";
+import { MessageCircle, Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -68,6 +68,13 @@ const Contacto = () => {
             {/* Left — Contact Info */}
             <div className="flex flex-col gap-8">
               <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <Phone className="h-5 w-5 text-accent mt-0.5 shrink-0" />
+                  <div>
+                    <p className="font-semibold text-foreground">Teléfono</p>
+                    <a href="tel:+522218594321" className="text-muted-foreground hover:text-accent transition-colors">+52 221 859 4321</a>
+                  </div>
+                </div>
                 <div className="flex items-start gap-4">
                   <Mail className="h-5 w-5 text-accent mt-0.5 shrink-0" />
                   <div>
