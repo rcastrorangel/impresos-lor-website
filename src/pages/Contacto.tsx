@@ -94,7 +94,7 @@ const Contacto = () => {
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
                 <Button size="lg" className="bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp/90 w-full font-semibold gap-2 py-6 text-base">
                   <MessageCircle className="h-5 w-5" />
-                  Escríbenos por WhatsApp (Solo Mensajes)
+                  Escríbenos por WhatsApp
                 </Button>
               </a>
             </div>
