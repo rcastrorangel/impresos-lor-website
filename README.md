@@ -126,16 +126,24 @@ Pull Request):
 
 - **`.github/workflows/ci.yml`** — en cada PR hacia `main` corre
   automáticamente `npm run lint`, `npm run build` y `npm run test`.
-- **`.github/workflows/auto-merge.yml`** — habilita el auto-merge de
-  GitHub en cuanto se abre o actualiza un PR. GitHub mergea el PR
-  automáticamente (squash) tan pronto como el check de CI pase, sin
-  necesidad de que alguien le dé clic manualmente a "Merge".
+- **`.github/workflows/auto-merge.yml`** — en cuanto el workflow anterior
+  (CI) termina exitosamente para un PR, este workflow lo mergea
+  automáticamente (squash) y borra la rama, sin que nadie tenga que darle
+  clic manualmente a "Merge".
+
+  *Nota:* no usamos la función nativa "Allow auto-merge" de GitHub porque
+  no está disponible en repositorios **privados** con el plan gratuito.
+  En su lugar, este workflow logra el mismo resultado directamente vía la
+  API de GitHub.
 
 Estos workflows ya quedan activos al hacer push, pero **la protección de la
 rama `main` debe configurarse una sola vez, manualmente, desde GitHub**
 (no existe una API automatizable para esto en este flujo):
 
-1. Ve a **Settings → General** del repositorio y activa **"Allow auto-merge"**.
+1. Ve a **Settings → General → Pull Requests** y dejar activado únicamente
+   **"Allow squash merging"** (desactivar "Allow merge commits" y "Allow
+   rebase merging"), para que el historial de `main` quede como un commit
+   limpio por cada PR.
 2. Ve a **Settings → Branches → Add branch protection rule** y crea una regla para `main`:
    - Activa **"Require a pull request before merging"** (así nadie puede subir directo a `main`).
    - Activa **"Require status checks to pass before merging"** y selecciona el check **"Lint, build y pruebas"** (del workflow `ci.yml`) como requerido.
