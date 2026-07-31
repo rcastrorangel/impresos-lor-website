@@ -4,8 +4,6 @@ Sitio web corporativo de **Impresos Lor**, imprenta offset ubicada en San Pedro
 Cholula, Puebla, México. El sitio presenta los servicios de la empresa y
 permite a los clientes solicitar cotizaciones directamente por WhatsApp.
 
-<!-- Prueba de verificación: CI + auto-merge (línea de prueba, se puede eliminar). -->
-
 **Sitio en producción**: https://impresoslor.com.mx
 
 ## Información del proyecto (Lovable)
@@ -128,32 +126,35 @@ Pull Request):
 
 - **`.github/workflows/ci.yml`** — en cada PR hacia `main` corre
   automáticamente `npm run lint`, `npm run build` y `npm run test`.
-- **`.github/workflows/auto-merge.yml`** — en cuanto el workflow anterior
-  (CI) termina exitosamente para un PR, este workflow lo mergea
-  automáticamente (squash) y borra la rama, sin que nadie tenga que darle
-  clic manualmente a "Merge".
+- **`.github/workflows/auto-merge.yml`** — habilita el auto-merge nativo
+  de GitHub en cuanto se abre o actualiza un PR. GitHub completa el merge
+  (squash) automáticamente en cuanto **todos** los checks requeridos
+  pasen — por ejemplo el CI de este repo y, si se agrega, el build de
+  Cloudflare Pages —, sin importar cuál termine al final ni que alguien
+  le dé clic manualmente a "Merge".
 
-  *Nota:* no usamos la función nativa "Allow auto-merge" de GitHub porque
-  no está disponible en repositorios **privados** con el plan gratuito.
-  En su lugar, este workflow logra el mismo resultado directamente vía la
-  API de GitHub.
+  *Nota:* como el repositorio es público, la función nativa "Allow
+  auto-merge" de GitHub sí está disponible (en repos **privados** con
+  plan gratuito no lo está).
 
 Estos workflows ya quedan activos al hacer push, pero **la protección de la
 rama `main` debe configurarse una sola vez, manualmente, desde GitHub**
 (no existe una API automatizable para esto en este flujo):
 
-1. Ve a **Settings → General → Pull Requests** y dejar activado únicamente
-   **"Allow squash merging"** (desactivar "Allow merge commits" y "Allow
+1. Ve a **Settings → General** y activa **"Allow auto-merge"**.
+2. Ve a **Settings → General → Pull Requests** y deja activado únicamente
+   **"Allow squash merging"** (desactiva "Allow merge commits" y "Allow
    rebase merging"), para que el historial de `main` quede como un commit
    limpio por cada PR.
-2. Ve a **Settings → Branches → Add branch protection rule** y crea una regla para `main`:
+3. Ve a **Settings → Branches → Add branch protection rule** y crea una regla para `main`:
    - Activa **"Require a pull request before merging"** (así nadie puede subir directo a `main`).
-   - Activa **"Require status checks to pass before merging"** y selecciona el check **"Lint, build y pruebas"** (del workflow `ci.yml`) como requerido.
+   - Activa **"Require status checks to pass before merging"** y selecciona **cada check** que deba pasar antes de mergear (por ejemplo "Lint, build y pruebas" del workflow `ci.yml`, y el check de Cloudflare Pages si está en uso).
    - *No* actives "Require approvals" si quieres que el merge sea 100% automático solo con base en los checks (esta fue la configuración solicitada). Si más adelante quieres que alguien revise el código antes de mergear, actívala y define el número de aprobaciones necesarias.
 
-Con esto: la agencia crea una rama, abre un PR hacia `main`, el CI corre
-solo, y si todo pasa, el PR se mergea automáticamente sin intervención
-manual. Si el CI falla, el PR se queda bloqueado hasta que se corrija.
+Con esto: la agencia crea una rama, abre un PR hacia `main`, los checks
+requeridos corren solos, y en cuanto todos pasan, el PR se mergea
+automáticamente sin intervención manual. Si algún check falla, el PR se
+queda bloqueado hasta que se corrija.
 
 ## Scripts disponibles
 
