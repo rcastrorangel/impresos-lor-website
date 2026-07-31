@@ -1,3 +1,12 @@
+/**
+ * Página de Aviso de Privacidad, conforme a la Ley Federal de Protección
+ * de Datos Personales en Posesión de los Particulares (LFPDPPP).
+ *
+ * El contenido legal es texto estático embebido en el componente; si
+ * cambian las prácticas de tratamiento de datos del sitio (p. ej. se
+ * agrega un nuevo proveedor de analítica), este archivo debe actualizarse
+ * manualmente, incluyendo la fecha de "Última actualización" al final.
+ */
 import useDocumentHead from "@/hooks/useDocumentHead";
 
 const AvisoDePrivacidad = () => {

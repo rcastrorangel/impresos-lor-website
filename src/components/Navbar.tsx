@@ -1,12 +1,20 @@
+/**
+ * Barra de navegación principal, fija en la parte superior del sitio.
+ * Incluye el logotipo, enlaces a las páginas principales, un botón de
+ * llamada a la acción (CTA) hacia WhatsApp y un menú lateral (Sheet)
+ * para dispositivos móviles.
+ */
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 
+// TODO: si el número de WhatsApp cambia, actualizarlo también en
+// FloatingWhatsApp.tsx y en src/pages/Contacto.tsx e Index.tsx.
 const WHATSAPP_URL = "https://wa.me/522218594321";
-// CTA: single-line button
 
+/** Enlaces mostrados tanto en el menú de escritorio como en el móvil. */
 const navLinks = [
   { label: "Inicio", to: "/" },
   { label: "Servicios", to: "/servicios" },

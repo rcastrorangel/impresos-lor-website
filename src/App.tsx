@@ -16,15 +16,26 @@ import AvisoDePrivacidad from "./pages/AvisoDePrivacidad";
 import PoliticaDeCookies from "./pages/PoliticaDeCookies";
 import NotFound from "./pages/NotFound";
 
+// Cliente de React Query compartido por toda la aplicación.
 const queryClient = new QueryClient();
 
+/**
+ * Lleva el scroll al inicio de la página cada vez que cambia la ruta.
+ * No renderiza contenido visible.
+ */
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
   return null;
 };
 
+/**
+ * Contenido principal de la aplicación: define las rutas del sitio y
+ * los elementos globales que se muestran en todas las páginas
+ * (barra de navegación, pie de página, botón de WhatsApp y aviso de cookies).
+ */
 const AppContent = () => {
+  // Registra vistas de página en Google Analytics en cada cambio de ruta.
   usePageTracking();
   return (
     <>
@@ -44,6 +55,11 @@ const AppContent = () => {
   );
 };
 
+/**
+ * Componente raíz de la aplicación.
+ * Configura los proveedores globales (React Query, tooltips, notificaciones
+ * tipo "toast") y el enrutador del sitio.
+ */
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>

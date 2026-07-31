@@ -1,3 +1,13 @@
+/**
+ * Página de Política de Cookies. Documenta las cookies utilizadas por el
+ * sitio (funcionales y analíticas de Google Analytics/GA4) y cómo se
+ * relacionan con el banner de consentimiento (`CookieConsent`) y Google
+ * Consent Mode v2.
+ *
+ * El contenido es texto estático: si se agregan o eliminan cookies
+ * (por ejemplo, al integrar un nuevo servicio de terceros), las tablas de
+ * este archivo deben actualizarse manualmente.
+ */
 import useDocumentHead from "@/hooks/useDocumentHead";
 
 const PoliticaDeCookies = () => {

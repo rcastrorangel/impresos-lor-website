@@ -13,8 +13,19 @@ import galleryFolders1 from "@/assets/gallery/Folders_1.jpeg";
 import galleryFolders2 from "@/assets/gallery/Folders_2.jpeg";
 import galleryPapelAlimenticio from "@/assets/gallery/Papel_Grado_Alimenticio.jpeg";
 
+/**
+ * Página de inicio (home).
+ *
+ * Presenta el hero principal, un resumen de servicios, la propuesta de
+ * valor, una galería de trabajos realizados y el mapa de ubicación.
+ * El contenido detallado de cada servicio vive en la página `Servicios`.
+ */
+
+// TODO: si el número de WhatsApp cambia, actualizarlo también en
+// Navbar.tsx, FloatingWhatsApp.tsx y src/pages/Contacto.tsx.
 const WHATSAPP_URL = "https://wa.me/522218594321";
 
+/** Tarjetas de resumen de servicios mostradas en la sección "Servicios". */
 const services = [
   {
     icon: FileText,
@@ -48,6 +59,7 @@ const services = [
   },
 ];
 
+/** Puntos destacados de la propuesta de valor de la empresa. */
 const valueProps = [
   {
     icon: Timer,
@@ -67,6 +79,7 @@ const valueProps = [
   },
 ];
 
+/** Imágenes de trabajos realizados mostradas en la sección de galería. */
 const galleryImages = [
   { src: galleryRemisiones1, alt: "Remisiones impresas personalizadas" },
   { src: galleryRemisiones2, alt: "Notas de pedido impresas" },

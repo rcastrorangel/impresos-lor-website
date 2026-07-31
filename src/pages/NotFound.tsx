@@ -1,3 +1,8 @@
+/**
+ * Página 404, mostrada cuando la ruta solicitada no coincide con ninguna
+ * ruta definida en `App.tsx`. Registra la ruta no encontrada en la consola
+ * para facilitar la depuración de enlaces rotos.
+ */
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 

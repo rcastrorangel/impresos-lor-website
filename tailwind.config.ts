@@ -1,5 +1,13 @@
 import type { Config } from "tailwindcss";
 
+/**
+ * Configuración de Tailwind CSS.
+ *
+ * Los colores del tema (primary, secondary, accent, etc.) están definidos
+ * como variables CSS (`--primary`, `--accent`, ...) en `src/index.css`,
+ * para poder soportar temas claro/oscuro sin duplicar la paleta aquí.
+ * Este archivo solo mapea esas variables a nombres de utilidades de Tailwind.
+ */
 export default {
   darkMode: ["class"],
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
