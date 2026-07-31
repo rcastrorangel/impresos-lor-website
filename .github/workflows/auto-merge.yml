@@ -1,0 +1,30 @@
+name: Auto-merge
+
+# Habilita el auto-merge de GitHub en cada Pull Request hacia main, para que
+# nadie tenga que darle clic manualmente a "Merge". GitHub hace el merge
+# automáticamente en cuanto el check requerido (workflow "CI") pase.
+#
+# Requisitos para que esto funcione (configuración única, ver README):
+#   1. Habilitar "Allow auto-merge" en Settings → General del repositorio.
+#   2. Marcar el check "Lint, build y pruebas" (del workflow ci.yml) como
+#      "required" en Settings → Branches → protección de la rama main.
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, ready_for_review]
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  enable-auto-merge:
+    name: Habilitar auto-merge
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    steps:
+      - name: Habilitar auto-merge (squash) en el PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: gh pr merge --auto --squash "$PR_URL"

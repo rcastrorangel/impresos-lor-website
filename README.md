@@ -118,6 +118,33 @@ npm run dev
 - Haz clic en "New codespace" para iniciar un entorno de desarrollo en la nube.
 - Edita, confirma (commit) y sube (push) los cambios desde ahí.
 
+## Integración y entrega continua (CI / auto-merge)
+
+El repositorio incluye dos workflows de GitHub Actions pensados para el
+flujo de trabajo con la agencia (rama `main` protegida, todo el trabajo vía
+Pull Request):
+
+- **`.github/workflows/ci.yml`** — en cada PR hacia `main` corre
+  automáticamente `npm run lint`, `npm run build` y `npm run test`.
+- **`.github/workflows/auto-merge.yml`** — habilita el auto-merge de
+  GitHub en cuanto se abre o actualiza un PR. GitHub mergea el PR
+  automáticamente (squash) tan pronto como el check de CI pase, sin
+  necesidad de que alguien le dé clic manualmente a "Merge".
+
+Estos workflows ya quedan activos al hacer push, pero **la protección de la
+rama `main` debe configurarse una sola vez, manualmente, desde GitHub**
+(no existe una API automatizable para esto en este flujo):
+
+1. Ve a **Settings → General** del repositorio y activa **"Allow auto-merge"**.
+2. Ve a **Settings → Branches → Add branch protection rule** y crea una regla para `main`:
+   - Activa **"Require a pull request before merging"** (así nadie puede subir directo a `main`).
+   - Activa **"Require status checks to pass before merging"** y selecciona el check **"Lint, build y pruebas"** (del workflow `ci.yml`) como requerido.
+   - *No* actives "Require approvals" si quieres que el merge sea 100% automático solo con base en los checks (esta fue la configuración solicitada). Si más adelante quieres que alguien revise el código antes de mergear, actívala y define el número de aprobaciones necesarias.
+
+Con esto: la agencia crea una rama, abre un PR hacia `main`, el CI corre
+solo, y si todo pasa, el PR se mergea automáticamente sin intervención
+manual. Si el CI falla, el PR se queda bloqueado hasta que se corrija.
+
 ## Scripts disponibles
 
 | Comando            | Descripción                                                   |

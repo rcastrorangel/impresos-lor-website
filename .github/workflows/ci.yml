@@ -1,0 +1,37 @@
+name: CI
+
+# Verificación automática de cada Pull Request antes de poder mergear a main.
+# Este workflow debe marcarse como "required" en la protección de la rama
+# `main` (Settings → Branches → Branch protection rules) para que ningún
+# PR pueda mergearse sin pasar lint, build y pruebas.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    name: Lint, build y pruebas
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Lint (ESLint)
+        run: npm run lint
+
+      - name: Compilar (build de producción)
+        run: npm run build
+
+      - name: Ejecutar pruebas (Vitest)
+        run: npm run test
