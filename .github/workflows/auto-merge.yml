@@ -1,0 +1,47 @@
+name: Auto-merge
+
+# Mergea automáticamente (squash) cualquier Pull Request hacia main en
+# cuanto el workflow "CI" termine en verde para ese PR.
+#
+# Nota: en repos privados con plan gratuito de GitHub, la función nativa
+# "Allow auto-merge" no está disponible. Este workflow logra el mismo
+# resultado sin depender de esa función: espera a que el workflow "CI"
+# (ci.yml) termine, y si fue exitoso, mergea el PR asociado a ese commit
+# directamente vía la API de GitHub (gh pr merge).
+#
+# Requisito para que esto funcione (configuración única, ver README):
+#   Marcar el check "Lint, build y pruebas" (del workflow ci.yml) como
+#   "required" en Settings → Branches → protección de la rama main.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  merge-if-green:
+    name: Mergear si el CI pasó
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request'
+    steps:
+      - name: Mergear el/los PR(s) asociados a este commit
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          PR_NUMBERS=$(gh api "repos/$REPO/commits/$HEAD_SHA/pulls" \
+            --jq '.[] | select(.state == "open") | .number')
+
+          if [ -z "$PR_NUMBERS" ]; then
+            echo "No hay PRs abiertos para este commit, nada que mergear."
+            exit 0
+          fi
+
+          for pr in $PR_NUMBERS; do
+            echo "Mergeando PR #$pr..."
+            gh pr merge "$pr" --repo "$REPO" --squash --delete-branch
+          done

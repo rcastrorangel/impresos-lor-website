@@ -1,3 +1,8 @@
+/**
+ * Pie de página del sitio: información de marca, enlaces de navegación
+ * secundaria (incluyendo avisos legales) y redes sociales. Se muestra en
+ * todas las páginas.
+ */
 import { Link } from "react-router-dom";
 import { Facebook, Instagram } from "lucide-react";
 

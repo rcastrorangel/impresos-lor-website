@@ -1,3 +1,11 @@
+/**
+ * Banner de consentimiento de cookies (Google Consent Mode v2).
+ *
+ * Se muestra únicamente si el usuario no ha registrado una preferencia
+ * previa en `localStorage`. Si el usuario ya había aceptado en una visita
+ * anterior, se reenvía el consentimiento a Google Analytics al cargar la
+ * página, ya que gtag no persiste este estado entre sesiones por sí mismo.
+ */
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -8,6 +16,7 @@ declare global {
   }
 }
 
+/** Llave usada en localStorage para persistir la preferencia de cookies. */
 const CONSENT_KEY = "cookie_consent";
 
 const CookieConsent = () => {
@@ -22,6 +31,7 @@ const CookieConsent = () => {
     }
   }, []);
 
+  /** Informa a Google Analytics (gtag) el estado actual de consentimiento. */
   const updateConsent = (state: "granted" | "denied") => {
     window.gtag?.("consent", "update", {
       analytics_storage: state,
@@ -31,12 +41,14 @@ const CookieConsent = () => {
     });
   };
 
+  /** Guarda la aceptación del usuario y habilita las cookies analíticas. */
   const handleAccept = () => {
     localStorage.setItem(CONSENT_KEY, "granted");
     updateConsent("granted");
     setVisible(false);
   };
 
+  /** Guarda el rechazo del usuario y mantiene las cookies analíticas deshabilitadas. */
   const handleReject = () => {
     localStorage.setItem(CONSENT_KEY, "denied");
     updateConsent("denied");

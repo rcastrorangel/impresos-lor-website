@@ -8,8 +8,20 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 
+/**
+ * Página de contacto.
+ *
+ * Muestra los datos de contacto, un mapa de ubicación y un formulario que,
+ * al enviarse, no llama a ningún backend: arma un mensaje formateado y abre
+ * WhatsApp Web/App con el texto precargado (no se envía correo ni se
+ * almacena la información en un servidor propio).
+ */
+
+// TODO: si el número de WhatsApp cambia, actualizarlo también en
+// Navbar.tsx, FloatingWhatsApp.tsx e Index.tsx.
 const WHATSAPP_NUMBER = "522218594321";
 
+/** Traduce el valor interno del select de servicio a una etiqueta legible. */
 const SERVICE_LABELS: Record<string, string> = {
   formatos: "Formatos comerciales",
   recetarios: "Recetarios y Formatos Médicos",
@@ -29,6 +41,11 @@ const Contacto = () => {
   });
   const [formData, setFormData] = useState({ name: "", phone: "", service: "", message: "" });
 
+  /**
+   * Arma el mensaje con los datos capturados y abre WhatsApp en una
+   * pestaña nueva con el texto ya redactado, en lugar de enviar el
+   * formulario a un servidor.
+   */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 

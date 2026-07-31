@@ -3,8 +3,19 @@ import useDocumentHead from "@/hooks/useDocumentHead";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
+/**
+ * Página de servicios.
+ *
+ * Detalla, en formato de acordeón, cada línea de servicio ofrecida por
+ * la empresa, con una descripción más extensa que la mostrada en la
+ * página de inicio.
+ */
+
+// TODO: si el número de WhatsApp cambia, actualizarlo también en
+// Navbar.tsx, FloatingWhatsApp.tsx y src/pages/Contacto.tsx.
 const WHATSAPP_URL = "https://wa.me/522218594321";
 
+/** Lista de servicios detallados, mostrados como secciones del acordeón. */
 const services = [
   {
     id: "formatos",

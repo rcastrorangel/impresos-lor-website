@@ -1,3 +1,9 @@
+/**
+ * Sistema de notificaciones tipo "toast" (basado en el generado por shadcn/ui).
+ * Mantiene una cola de notificaciones en un store en memoria fuera de React,
+ * para que puedan dispararse desde cualquier parte de la aplicación mediante
+ * la función `toast()`, y ser leídas por cualquier componente con `useToast()`.
+ */
 import * as React from "react";
 
 import type { ToastActionElement, ToastProps } from "@/components/ui/toast";

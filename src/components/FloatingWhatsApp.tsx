@@ -1,5 +1,11 @@
+/**
+ * Botón flotante de WhatsApp, visible en todas las páginas, que permite
+ * al usuario iniciar una conversación directa para solicitar una cotización.
+ */
 import { MessageCircle } from "lucide-react";
 
+// TODO: si el número de WhatsApp cambia, actualizarlo también en
+// Navbar.tsx y en src/pages/Contacto.tsx e Index.tsx.
 const WHATSAPP_URL = "https://wa.me/522218594321";
 
 const FloatingWhatsApp = () => {

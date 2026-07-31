@@ -1,73 +1,178 @@
-# Welcome to your Lovable project
+# Impresos Lor — Sitio Web
 
-## Project info
+Sitio web corporativo de **Impresos Lor**, imprenta offset ubicada en San Pedro
+Cholula, Puebla, México. El sitio presenta los servicios de la empresa y
+permite a los clientes solicitar cotizaciones directamente por WhatsApp.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+**Sitio en producción**: https://impresoslor.com.mx
 
-## How can I edit this code?
+## Información del proyecto (Lovable)
 
-There are several ways of editing your application.
+Este proyecto fue creado y se sincroniza con [Lovable](https://lovable.dev):
 
-**Use Lovable**
+**URL del proyecto**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+Los cambios realizados desde Lovable se envían (commit) automáticamente a
+este repositorio, y los cambios que se suban (push) a este repositorio desde
+otro lugar (por ejemplo, un IDE local) también se reflejan en Lovable.
 
-Changes made via Lovable will be committed automatically to this repo.
+## Tecnologías utilizadas
 
-**Use your preferred IDE**
+- **[Vite](https://vitejs.dev/)** — herramienta de construcción (build) y servidor de desarrollo.
+- **[React 18](https://react.dev/)** + **TypeScript** — biblioteca de UI y tipado estático.
+- **[React Router](https://reactrouter.com/)** — enrutamiento de páginas (SPA).
+- **[Tailwind CSS](https://tailwindcss.com/)** — estilos basados en utilidades.
+- **[shadcn/ui](https://ui.shadcn.com/)** + **[Radix UI](https://www.radix-ui.com/)** — componentes de interfaz accesibles (carpeta `src/components/ui`, generados automáticamente; no requieren mantenimiento manual salvo personalización explícita).
+- **[TanStack Query](https://tanstack.com/query)** — utilería para manejo de datos asíncronos (actualmente sin backend propio conectado).
+- **[Vitest](https://vitest.dev/)** + Testing Library — pruebas automatizadas.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+No hay backend propio: el formulario de contacto no envía datos a un
+servidor, sino que redirige al usuario a WhatsApp con el mensaje ya
+redactado (ver `src/pages/Contacto.tsx`).
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Estructura del proyecto
 
-Follow these steps:
+```
+src/
+├── assets/gallery/       # Imágenes de trabajos realizados, usadas en la página de inicio
+├── components/           # Componentes propios del sitio (Navbar, Footer, etc.)
+│   └── ui/                # Componentes base de shadcn/ui (generados, no editar a mano salvo necesidad)
+├── hooks/                 # Hooks reutilizables (SEO, tracking, notificaciones, breakpoint móvil)
+├── lib/                   # Utilidades generales (p. ej. combinación de clases de Tailwind)
+├── pages/                 # Una página por ruta del sitio (ver App.tsx para el mapeo de rutas)
+├── test/                  # Configuración y pruebas con Vitest
+├── App.tsx                # Enrutador principal y proveedores globales
+├── main.tsx                # Punto de entrada de la aplicación
+└── index.css               # Variables de tema (colores, radios, etc.) y estilos globales
+```
+
+### Páginas y rutas (`src/App.tsx`)
+
+| Ruta                     | Componente               | Descripción                              |
+| ------------------------ | ------------------------ | ----------------------------------------- |
+| `/`                       | `pages/Index.tsx`         | Inicio: hero, resumen de servicios, propuesta de valor, galería y mapa. |
+| `/servicios`              | `pages/Servicios.tsx`     | Detalle de cada línea de servicio (acordeón). |
+| `/contacto`               | `pages/Contacto.tsx`      | Datos de contacto, mapa y formulario que redirige a WhatsApp. |
+| `/aviso-de-privacidad`    | `pages/AvisoDePrivacidad.tsx` | Aviso de privacidad (LFPDPPP).       |
+| `/politica-de-cookies`    | `pages/PoliticaDeCookies.tsx` | Política de cookies y Consent Mode. |
+| `*` (cualquier otra ruta) | `pages/NotFound.tsx`      | Página 404.                               |
+
+## Puntos importantes para el mantenimiento
+
+- **Número de WhatsApp**: está repetido como constante en varios archivos
+  (`Navbar.tsx`, `FloatingWhatsApp.tsx`, `Contacto.tsx`, `Index.tsx`,
+  `Servicios.tsx`). Si el número cambia, debe actualizarse en los cinco
+  lugares (están marcados con comentarios `TODO`).
+- **SEO por página**: cada página llama al hook `useDocumentHead` para
+  definir su `<title>`, meta descripción y URL canónica (ver
+  `src/hooks/useDocumentHead.ts`).
+- **Cookies y Google Analytics**: el consentimiento se gestiona con el
+  componente `CookieConsent.tsx` mediante Google Consent Mode v2. El texto
+  legal correspondiente vive en `PoliticaDeCookies.tsx` y
+  `AvisoDePrivacidad.tsx`; si cambia el uso de cookies o de terceros, estos
+  textos deben actualizarse manualmente junto con su fecha de "última
+  actualización".
+- **Contenido legal como texto estático**: el aviso de privacidad y la
+  política de cookies no provienen de un CMS; son JSX escrito directamente
+  en los componentes de página.
+
+## Cómo editar este código
+
+Hay varias formas de trabajar en este proyecto:
+
+**Usar Lovable**
+
+Visita el [proyecto en Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID)
+y describe los cambios que deseas hacer mediante instrucciones (prompts).
+Los cambios se sincronizan automáticamente con este repositorio.
+
+**Usar tu editor o IDE preferido (desarrollo local)**
+
+Requisito: tener Node.js y npm instalados (se recomienda instalar Node
+mediante [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)).
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# 1. Clonar el repositorio
+git clone <URL_DEL_REPOSITORIO>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# 2. Entrar a la carpeta del proyecto
+cd impresos-lor-website
 
-# Step 3: Install the necessary dependencies.
-npm i
+# 3. Instalar dependencias
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# 4. Iniciar el servidor de desarrollo (con recarga en caliente)
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+**Editar un archivo directamente en GitHub**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- Navega hasta el archivo deseado.
+- Haz clic en el ícono de lápiz ("Edit") en la parte superior derecha.
+- Realiza los cambios y confirma (commit) directamente desde GitHub.
 
-**Use GitHub Codespaces**
+**Usar GitHub Codespaces**
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Desde la página principal del repositorio, haz clic en el botón verde "Code".
+- Selecciona la pestaña "Codespaces".
+- Haz clic en "New codespace" para iniciar un entorno de desarrollo en la nube.
+- Edita, confirma (commit) y sube (push) los cambios desde ahí.
 
-## What technologies are used for this project?
+## Integración y entrega continua (CI / auto-merge)
 
-This project is built with:
+El repositorio incluye dos workflows de GitHub Actions pensados para el
+flujo de trabajo con la agencia (rama `main` protegida, todo el trabajo vía
+Pull Request):
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **`.github/workflows/ci.yml`** — en cada PR hacia `main` corre
+  automáticamente `npm run lint`, `npm run build` y `npm run test`.
+- **`.github/workflows/auto-merge.yml`** — en cuanto el workflow anterior
+  (CI) termina exitosamente para un PR, este workflow lo mergea
+  automáticamente (squash) y borra la rama, sin que nadie tenga que darle
+  clic manualmente a "Merge".
 
-## How can I deploy this project?
+  *Nota:* no usamos la función nativa "Allow auto-merge" de GitHub porque
+  no está disponible en repositorios **privados** con el plan gratuito.
+  En su lugar, este workflow logra el mismo resultado directamente vía la
+  API de GitHub.
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+Estos workflows ya quedan activos al hacer push, pero **la protección de la
+rama `main` debe configurarse una sola vez, manualmente, desde GitHub**
+(no existe una API automatizable para esto en este flujo):
 
-## Can I connect a custom domain to my Lovable project?
+1. Ve a **Settings → General → Pull Requests** y dejar activado únicamente
+   **"Allow squash merging"** (desactivar "Allow merge commits" y "Allow
+   rebase merging"), para que el historial de `main` quede como un commit
+   limpio por cada PR.
+2. Ve a **Settings → Branches → Add branch protection rule** y crea una regla para `main`:
+   - Activa **"Require a pull request before merging"** (así nadie puede subir directo a `main`).
+   - Activa **"Require status checks to pass before merging"** y selecciona el check **"Lint, build y pruebas"** (del workflow `ci.yml`) como requerido.
+   - *No* actives "Require approvals" si quieres que el merge sea 100% automático solo con base en los checks (esta fue la configuración solicitada). Si más adelante quieres que alguien revise el código antes de mergear, actívala y define el número de aprobaciones necesarias.
 
-Yes, you can!
+Con esto: la agencia crea una rama, abre un PR hacia `main`, el CI corre
+solo, y si todo pasa, el PR se mergea automáticamente sin intervención
+manual. Si el CI falla, el PR se queda bloqueado hasta que se corrija.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Scripts disponibles
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+| Comando            | Descripción                                                   |
+| ------------------- | -------------------------------------------------------------- |
+| `npm run dev`        | Inicia el servidor de desarrollo en `http://localhost:8080`.  |
+| `npm run build`      | Genera la compilación de producción en `dist/`.               |
+| `npm run build:dev`  | Genera una compilación en modo desarrollo (sin minificar).    |
+| `npm run preview`    | Sirve localmente la carpeta `dist/` ya compilada.              |
+| `npm run lint`       | Ejecuta ESLint sobre todo el proyecto.                         |
+| `npm run test`       | Ejecuta las pruebas automatizadas una sola vez (Vitest).       |
+| `npm run test:watch` | Ejecuta las pruebas en modo observador (watch).                |
+
+## Despliegue (deploy)
+
+La forma más simple es publicar desde Lovable: abre el proyecto y usa
+**Share → Publish**.
+
+## Conectar un dominio personalizado
+
+Sí es posible. En Lovable, ve a **Project → Settings → Domains** y haz clic
+en **Connect Domain**.
+
+Más información: [Configurar un dominio personalizado](https://docs.lovable.dev/features/custom-domain#custom-domain).
