@@ -4,6 +4,8 @@ Sitio web corporativo de **Impresos Lor**, imprenta offset ubicada en San Pedro
 Cholula, Puebla, México. El sitio presenta los servicios de la empresa y
 permite a los clientes solicitar cotizaciones directamente por WhatsApp.
 
+<!-- Prueba de verificación: CI + auto-merge (línea de prueba, se puede eliminar). -->
+
 **Sitio en producción**: https://impresoslor.com.mx
 
 ## Información del proyecto (Lovable)
