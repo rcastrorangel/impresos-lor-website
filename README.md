@@ -156,6 +156,19 @@ requeridos corren solos, y en cuanto todos pasan, el PR se mergea
 automáticamente sin intervención manual. Si algún check falla, el PR se
 queda bloqueado hasta que se corrija.
 
+### Dependabot
+
+`.github/dependabot.yml` mantiene actualizadas tanto las dependencias de
+npm como las versiones de las GitHub Actions usadas en los workflows,
+abriendo un PR automáticamente cuando hay una actualización disponible.
+Esos PRs pasan por el mismo flujo de CI + auto-merge que cualquier otro.
+
+Con `rebase-strategy: "auto"`, Dependabot actualiza la rama de sus PRs
+contra `main` en cada revisión programada, para que no se queden
+"behind" y bloqueados por la regla de rama actualizada. Si un PR de
+Dependabot se queda esperando y no se actualiza solo, se le puede pedir
+manualmente comentando `@dependabot rebase` en el PR.
+
 ## Scripts disponibles
 
 | Comando            | Descripción                                                   |
