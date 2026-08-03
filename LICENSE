@@ -1,0 +1,90 @@
+Copyright (c) 2026 Impresos Lor. All Rights Reserved.
+
+This repository and all of its contents (including, without limitation,
+source code, configuration files, build scripts, documentation, text
+content, product and business descriptions, photographs, images, logos,
+and any other material contained in it, collectively the "Work") are the
+proprietary property of Impresos Lor ("the Owner").
+
+This repository is made publicly viewable on GitHub solely to enable the
+Owner's continuous integration and deployment tooling. Public visibility
+does NOT constitute, and must not be interpreted as, a grant of any
+license, right, or permission to use the Work, in whole or in part, for
+any purpose.
+
+1. NO LICENSE GRANTED
+
+   Except for the limited permission below to view the Work as rendered by
+   GitHub's web interface, no right, title, license, or interest in the
+   Work is granted to any person or entity. Without limiting the
+   foregoing, no one may, without the prior written permission of the
+   Owner:
+
+     a. copy, reproduce, or store the Work, in whole or in part, in any
+        medium or format;
+     b. modify, adapt, translate, or create derivative works based on the
+        Work;
+     c. distribute, publish, sublicense, rent, lease, or otherwise make
+        the Work (or any derivative of it) available to any third party;
+     d. use the Work, in whole or in part, for the benefit of any website,
+        product, or service other than the Owner's own; or
+     e. remove, obscure, or alter any copyright, trademark, or other
+        proprietary notice contained in the Work.
+
+   Forking or cloning this repository through GitHub's platform features
+   does not grant, and must not be relied upon as granting, any of the
+   permissions described above. Any such fork or clone remains subject to
+   this License in its entirety.
+
+2. TRADEMARKS AND BUSINESS IDENTITY
+
+   "Impresos Lor" and any associated names, logos, product names, and
+   business descriptions contained in the Work are trademarks and/or trade
+   names of the Owner, whether or not registered, and are not licensed
+   under this document. No permission is granted to use them in any
+   manner.
+
+3. THIRD-PARTY COMPONENTS
+
+   This project depends on third-party open-source software packages
+   (see `package.json` and `package-lock.json` for the complete list),
+   such as React, Vite, Tailwind CSS, and the Radix UI/shadcn-ui component
+   libraries. Those packages are NOT covered by this License and remain
+   subject to their own respective licenses (as published by their
+   authors), which generally do permit reuse. Nothing in this License
+   restricts your rights under those independent licenses with respect to
+   the unmodified third-party packages themselves; it restricts only the
+   Owner's own original Work contained in this repository.
+
+4. NO WARRANTY
+
+   THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND
+   NON-INFRINGEMENT. VIEWING OR REFERENCING THE WORK IS AT YOUR OWN RISK.
+
+5. LIMITATION OF LIABILITY
+
+   IN NO EVENT SHALL THE OWNER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE,
+   ARISING FROM, OUT OF, OR IN CONNECTION WITH THE WORK OR THE USE OR
+   OTHER DEALINGS IN THE WORK.
+
+6. REQUESTING PERMISSION
+
+   If you would like to use, license, or collaborate on any part of this
+   Work — for example, as a contractor or agency engaged to develop it —
+   please contact the Owner directly to obtain written authorization
+   before doing so. Contractors and agencies granted repository write
+   access for the purpose of developing this website are authorized to
+   modify the Work solely within the scope of that engagement, under the
+   terms agreed with the Owner separately from this document; this License
+   governs use by all other parties.
+
+7. GOVERNING LAW
+
+   This License is governed by the laws of the United Mexican States,
+   without regard to its conflict-of-laws principles, without prejudice to
+   any mandatory consumer or local law that may apply.
+
+All rights not expressly granted herein are reserved by the Owner.

@@ -179,3 +179,13 @@ Sí es posible. En Lovable, ve a **Project → Settings → Domains** y haz clic
 en **Connect Domain**.
 
 Más información: [Configurar un dominio personalizado](https://docs.lovable.dev/features/custom-domain#custom-domain).
+
+## Licencia
+
+Este repositorio es público, pero el código y contenido son propiedad de
+Impresos Lor — **no** es software de código abierto. Ver el archivo
+[`LICENSE`](./LICENSE) para los términos completos: en resumen, nadie tiene
+permiso de copiar, modificar ni redistribuir este código sin autorización
+por escrito del propietario. Las dependencias de terceros (React, Vite,
+Tailwind CSS, etc.) mantienen sus propias licencias de código abierto,
+independientes de este repositorio.
