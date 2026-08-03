@@ -6,6 +6,14 @@ name: Auto-merge
 # sin importar cuántos sean (CI, Cloudflare Pages, etc.) ni cuál termine
 # al final —, sin que nadie tenga que darle clic manualmente a "Merge".
 #
+# EXCEPCIÓN: los PRs de Dependabot que sean actualizaciones de versión
+# "mayor" (semver-major, ej. react-router-dom 6→7) NO se auto-mergean.
+# Un bump mayor puede traer cambios incompatibles que el CI de este repo
+# (lint + build + una prueba de ejemplo) no necesariamente detecta, así
+# que requieren revisión manual antes de mergear. Los bumps menores/parche
+# de Dependabot, y cualquier PR que no sea de Dependabot, sí se
+# auto-mergean igual que antes.
+#
 # Requisitos para que esto funcione (configuración única, ver README):
 #   1. Habilitar "Allow auto-merge" en Settings → General del repositorio
 #      (disponible porque el repo es público).
@@ -28,8 +36,24 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
     steps:
+      - name: Leer metadata de Dependabot (si aplica)
+        id: metadata
+        if: github.actor == 'dependabot[bot]'
+        uses: dependabot/fetch-metadata@v2
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
       - name: Habilitar auto-merge (squash) en el PR
+        if: github.actor != 'dependabot[bot]' || steps.metadata.outputs.update-type != 'version-update:semver-major'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{ github.event.pull_request.html_url }}
         run: gh pr merge --auto --squash "$PR_URL"
+
+      - name: Avisar que requiere revisión manual (bump mayor)
+        if: github.actor == 'dependabot[bot]' && steps.metadata.outputs.update-type == 'version-update:semver-major'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          gh pr comment "$PR_URL" --body "Esta es una actualización de versión **mayor** (semver-major), así que no se mergea automáticamente. Requiere revisión manual: revisa el *changelog* del paquete por cambios incompatibles y prueba el sitio localmente (\`npm run dev\` / \`npm run build\`) antes de aprobar y mergear."
