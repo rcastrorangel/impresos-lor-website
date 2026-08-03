@@ -10,6 +10,12 @@ on:
   push:
     branches: [main]
 
+# Limita el GITHUB_TOKEN a lectura: este workflow solo descarga el código,
+# instala dependencias y corre lint/build/test — no necesita permisos de
+# escritura sobre el repositorio.
+permissions:
+  contents: read
+
 jobs:
   verify:
     name: Lint, build y pruebas
