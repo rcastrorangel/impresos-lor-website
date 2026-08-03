@@ -1,0 +1,21 @@
+version: 2
+updates:
+  # Dependencias de npm (package.json / package-lock.json).
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    # "auto" (por defecto) le pide a Dependabot que actualice la rama del PR
+    # contra main automáticamente cada vez que revisa sus PRs abiertos, para
+    # que no se queden "behind" y bloqueados por la regla de branch
+    # protection que exige la rama actualizada antes de mergear.
+    rebase-strategy: "auto"
+    open-pull-requests-limit: 10
+
+  # Versiones de las GitHub Actions usadas en los workflows (.github/workflows/*.yml).
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    rebase-strategy: "auto"
+    open-pull-requests-limit: 10
