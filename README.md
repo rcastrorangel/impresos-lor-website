@@ -62,7 +62,9 @@ src/
 - **Número de WhatsApp**: está repetido como constante en varios archivos
   (`Navbar.tsx`, `FloatingWhatsApp.tsx`, `Contacto.tsx`, `Index.tsx`,
   `Servicios.tsx`). Si el número cambia, debe actualizarse en los cinco
-  lugares (están marcados con comentarios `TODO`).
+  lugares (están marcados con comentarios `TODO`) y también en las
+  pruebas e2e (`e2e/whatsapp.spec.ts` y `e2e/formulario-contacto.spec.ts`),
+  o esas pruebas empezarán a fallar en el PR.
 - **SEO por página**: cada página llama al hook `useDocumentHead` para
   definir su `<title>`, meta descripción y URL canónica (ver
   `src/hooks/useDocumentHead.ts`).
@@ -191,8 +193,40 @@ PR explicándolo. Para esos PRs:
 | `npm run build:dev`  | Genera una compilación en modo desarrollo (sin minificar).    |
 | `npm run preview`    | Sirve localmente la carpeta `dist/` ya compilada.              |
 | `npm run lint`       | Ejecuta ESLint sobre todo el proyecto.                         |
-| `npm run test`       | Ejecuta las pruebas automatizadas una sola vez (Vitest).       |
-| `npm run test:watch` | Ejecuta las pruebas en modo observador (watch).                |
+| `npm run test`       | Ejecuta las pruebas unitarias una sola vez (Vitest).           |
+| `npm run test:watch` | Ejecuta las pruebas unitarias en modo observador (watch).      |
+| `npm run test:e2e`   | Ejecuta las pruebas end-to-end en un navegador real (Playwright). Compila el sitio y levanta un servidor local automáticamente. |
+
+## Pruebas end-to-end (e2e)
+
+La carpeta `e2e/` contiene pruebas con [Playwright](https://playwright.dev/)
+que abren el sitio en un navegador real y verifican que funciona de verdad,
+no solo que compila: que las páginas cargan, que la navegación entre ellas
+funciona, que los botones de WhatsApp apuntan al número correcto, que el
+formulario de contacto arma y abre el mensaje de WhatsApp esperado, y que
+el aviso de cookies se comporta correctamente.
+
+Esto es necesario porque el lint y el build por sí solos no garantizan que
+el sitio funcione — solo que el código no tiene errores de sintaxis. Estas
+pruebas corren automáticamente como parte del check "Lint, build y
+pruebas" en cada Pull Request (ver `.github/workflows/ci.yml`), así que un
+cambio que rompa la navegación o los botones de WhatsApp bloqueará el PR
+igual que un error de build.
+
+Para correrlas localmente:
+
+```sh
+npm run build
+npm run test:e2e
+```
+
+(la primera vez, Playwright puede pedir instalar sus navegadores con
+`npx playwright install --with-deps chromium`).
+
+Si el número de WhatsApp cambia, actualiza también la constante
+`WHATSAPP_NUMBER`/`WHATSAPP_URL` en `e2e/whatsapp.spec.ts` y
+`e2e/formulario-contacto.spec.ts` (ver la nota sobre este número en la
+sección "Puntos importantes para el mantenimiento" más abajo).
 
 ## Despliegue (deploy)
 
