@@ -161,13 +161,26 @@ queda bloqueado hasta que se corrija.
 `.github/dependabot.yml` mantiene actualizadas tanto las dependencias de
 npm como las versiones de las GitHub Actions usadas en los workflows,
 abriendo un PR automáticamente cuando hay una actualización disponible.
-Esos PRs pasan por el mismo flujo de CI + auto-merge que cualquier otro.
 
 Con `rebase-strategy: "auto"`, Dependabot actualiza la rama de sus PRs
 contra `main` en cada revisión programada, para que no se queden
 "behind" y bloqueados por la regla de rama actualizada. Si un PR de
 Dependabot se queda esperando y no se actualiza solo, se le puede pedir
 manualmente comentando `@dependabot rebase` en el PR.
+
+**Actualizaciones mayores (semver-major) requieren revisión manual.**
+Los PRs de Dependabot con bumps de versión menor o de parche (ej.
+`4.1.2` → `4.1.5`) pasan por el mismo flujo de CI + auto-merge que
+cualquier otro PR. Pero un bump de versión **mayor** (ej.
+`react-router-dom` `6.x` → `7.x`) puede traer cambios incompatibles que
+el CI de este repo (lint + build + una prueba de ejemplo, sin cobertura
+real de la aplicación) no necesariamente detecta — así que
+`auto-merge.yml` los deja sin auto-mergear y deja un comentario en el
+PR explicándolo. Para esos PRs:
+
+1. Revisa el *changelog* enlazado en la descripción del PR por cambios incompatibles.
+2. Haz checkout de la rama del PR localmente y prueba el sitio (`npm run dev`, revisa que compile con `npm run build`).
+3. Si todo está bien, mergea el PR manualmente desde GitHub.
 
 ## Scripts disponibles
 
