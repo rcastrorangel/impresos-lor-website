@@ -20,16 +20,7 @@ declare global {
 const CONSENT_KEY = "cookie_consent";
 
 const CookieConsent = () => {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const stored = localStorage.getItem(CONSENT_KEY);
-    if (!stored) {
-      setVisible(true);
-    } else if (stored === "granted") {
-      updateConsent("granted");
-    }
-  }, []);
+  const [visible, setVisible] = useState(() => !localStorage.getItem(CONSENT_KEY));
 
   /** Informa a Google Analytics (gtag) el estado actual de consentimiento. */
   const updateConsent = (state: "granted" | "denied") => {
@@ -40,6 +31,12 @@ const CookieConsent = () => {
       ad_personalization: state,
     });
   };
+
+  useEffect(() => {
+    if (localStorage.getItem(CONSENT_KEY) === "granted") {
+      updateConsent("granted");
+    }
+  }, []);
 
   /** Guarda la aceptación del usuario y habilita las cookies analíticas. */
   const handleAccept = () => {
