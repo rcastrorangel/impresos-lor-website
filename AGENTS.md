@@ -66,16 +66,53 @@ pendiente de revisión:
    páginas principales a mano si el cambio toca algo visual o de
    enrutamiento (ej. una librería de UI o de routing).
 
+**Cuidado al poner al día una rama de Dependabot que quedó atrás.** Si al
+mergear `main` hay conflicto en `package.json`, resuélvelo a mano dejando el
+bump de ese PR **más** lo que ya entró en `main` (elegir un lado completo
+descarta una actualización que ya se había mergeado). El `package-lock.json`
+no se resuelve a mano: toma cualquier lado, y **después** corre `npm install`
+para regenerarlo y commitea el resultado. Si commiteas el merge sin regenerar
+el lockfile, en local todo parece bien (tu `node_modules` ya está correcto)
+pero el CI falla con `npm error code EUSAGE` porque el lockfile describe un
+`package.json` distinto al que quedó. Corre la secuencia completa de
+verificación **después** del commit de merge, no antes.
+
+Nota práctica: en algunos entornos, un `npm install` limpio deja el árbol en
+un estado donde `npm ci` todavía se queja de alguna dependencia transitiva.
+Correr `npm install` una segunda vez lo resuelve. Si `npm ci` falla justo
+después de una instalación limpia, prueba eso antes de culpar al bump.
+
 **Precedentes de bumps mayores que se rechazaron por romper el sitio o el
 tooling** (referencia si Dependabot los vuelve a proponer):
 
-- `react-dom` a una versión mayor sin subir `react` a la misma versión →
-  la página queda casi en blanco con un error de JavaScript real. `react`
-  y `react-dom` **siempre** deben tener la misma versión mayor.
+- `react` / `react-dom` / `@types/react` a una versión mayor sin subir
+  **todos** a la misma versión → la página queda casi en blanco con un
+  error de JavaScript real. El build compila igual, así que esto solo se
+  detecta al abrir el sitio. Dependabot abre estos bumps por separado: hay
+  que mergearlos juntos o no mergear ninguno.
 - `jsdom` 20 → 30 → rompe el arranque de Vitest (`webidl.util.markAsUncloneable
   is not a function`), incompatible con el Node.js usado en CI.
-- `eslint` 9 → 10 → `npm ci` falla: `eslint-plugin-react-hooks` solo
-  soporta hasta ESLint 9.
+- `lucide-react` 0.x → 1.x → eliminó **permanentemente** todos los íconos
+  de marcas (Facebook, Instagram) por temas de marca registrada. Rompe el
+  build en `src/components/Footer.tsx`. No es un renombre: aceptarlo exige
+  reemplazar esos íconos por SVGs propios u otra librería — decisión de
+  diseño, no un bump de rutina.
+- `date-fns` 3 → 4 → conflicto de peer dependencies con
+  `react-day-picker@8.x`, que solo soporta `^2 || ^3`. Además `date-fns` no
+  se usa directamente en `src/`, así que no hay nada que ganar forzándolo.
+- `typescript` 5 → 7 → `typescript-eslint` requiere `<6.1.0`. El ecosistema
+  todavía no soporta TS 7; conviene revisarlo dentro de unos meses.
+- `@eslint/js` 9 → 10 → requiere `eslint@^10`, pero el paquete `eslint` sigue
+  en 9.x. Los dos tienen que subir juntos. Nota: `eslint-plugin-react-hooks`
+  ya está en 7.1.1, que **sí** soporta ESLint 10 — así que este bloqueo
+  desaparece en cuanto Dependabot proponga subir `eslint` a 10.
+
+Un patrón que se repite: antes de asumir que un bump es peligroso, revisa si
+el paquete **realmente se usa** (`grep -r "from 'paquete'" src/`). Buena parte
+de lo que está en `package.json` viene del andamiaje de shadcn/ui y ninguna
+página lo importa (`recharts`, `vaul`, `zod`, `react-resizable-panels`,
+`next-themes`, `date-fns`, entre otros). Un paquete que nadie importa se puede
+actualizar sin drama; uno que sí se usa merece correr las pruebas e2e.
 
 ## Cosas frágiles a las que hay que prestar atención
 
