@@ -106,6 +106,15 @@ tooling** (referencia si Dependabot los vuelve a proponer):
   en 9.x. Los dos tienen que subir juntos. Nota: `eslint-plugin-react-hooks`
   ya está en 7.1.1, que **sí** soporta ESLint 10 — así que este bloqueo
   desaparece en cuanto Dependabot proponga subir `eslint` a 10.
+- `tailwindcss` 3 → 4 → rompe el build de inmediato: el plugin de PostCSS se
+  movió a un paquete aparte (`@tailwindcss/postcss`), así que
+  `postcss.config.js` con `tailwindcss: {}` directo ya no funciona. Y eso es
+  solo el primer error — v4 además cambia `tailwind.config.ts` a un formato
+  CSS-first (`@theme` en vez de `theme.extend`) y probablemente requiere
+  reemplazar el plugin `tailwindcss-animate` (v3) por algo como
+  `tw-animate-css`. Es una migración real del sistema de estilos completo,
+  no un bump — evalúala como su propia tarea, no como parte de mantenimiento
+  rutinario de Dependabot.
 
 Un patrón que se repite: antes de asumir que un bump es peligroso, revisa si
 el paquete **realmente se usa** (`grep -r "from 'paquete'" src/`). Buena parte
