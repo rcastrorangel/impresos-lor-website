@@ -77,6 +77,15 @@ pero el CI falla con `npm error code EUSAGE` porque el lockfile describe un
 `package.json` distinto al que quedó. Corre la secuencia completa de
 verificación **después** del commit de merge, no antes.
 
+**No vuelvas a agregar `bun.lock` (ni `bun.lockb`, `yarn.lock`,
+`pnpm-lock.yaml`).** El único lockfile es `package-lock.json`. Cloudflare
+Pages elige el gestor de paquetes según el lockfile que encuentre: con un
+`bun.lock` presente corre `bun install --frozen-lockfile`, y como Dependabot
+solo actualiza `package-lock.json`, el deploy de cada PR de Dependabot
+fallaba con `lockfile had changes, but lockfile is frozen` — eso bloqueó el
+auto-merge de todos los bumps entre septiembre y octubre de 2026. Si
+Lovable u otra herramienta lo vuelve a generar, bórralo.
+
 Nota práctica: en algunos entornos, un `npm install` limpio deja el árbol en
 un estado donde `npm ci` todavía se queja de alguna dependencia transitiva.
 Correr `npm install` una segunda vez lo resuelve. Si `npm ci` falla justo
